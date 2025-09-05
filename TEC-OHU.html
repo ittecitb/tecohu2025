@@ -1,859 +1,1747 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TEC OHU ITB - Open House 2025</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="logo-tec-ohu.png" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
-    
+
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0a0a1a;
-            color: #e0e0e0;
-        }
-        #space-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .btn-primary {
-            background: linear-gradient(90deg, #b23e30, #c9b64b);
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(239, 195, 100, 0.3);
-        }
-        
-        #navbar-container {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            right: 1rem;
-            z-index: 50;
-        }
-        #navbar {
-            border-radius: 9999px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
+      html {
+        scroll-padding-top: 70x;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #0a0a1a;
+        color: #e0e0e0;
+      }
+      #space-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: radial-gradient(
+          ellipse at bottom,
+          #1b2735 0%,
+          #090a0f 100%
+        );
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .btn-primary {
+        background: linear-gradient(90deg, #b23e30, #c9b64b);
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(239, 195, 100, 0.3);
+      }
 
-        @keyframes fade-in-up {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
-        .animated-section {
-            opacity: 0;
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            transform: translateY(30px);
-        }
-        .animated-section.is-visible { opacity: 1; transform: translateY(0); }
+      #navbar-container {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        z-index: 50;
+      }
+      #navbar {
+        border-radius: 9999px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
 
-        #chat-bubble {
-            position: fixed;
-            bottom: 6.5rem;
-            right: 1.5rem;
-            z-index: 101;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transform-origin: bottom right;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
-        #chat-bubble-message {
-            background: white;
-            color: #1e293b;
-            padding: 0.75rem 1.25rem;
-            border-radius: 1.5rem;
-            font-weight: 500;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            position: relative;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        #chat-bubble-message::after {
-            content: ''; position: absolute; bottom: 0; right: -8px;
-            width: 0; height: 0; border: 10px solid transparent;
-            border-top-color: white; border-bottom: 0; border-right: 0;
-            margin-bottom: 5px; transform: rotate(30deg);
-        }
-        #close-bubble-btn {
-            background: rgba(0,0,0,0.3); color: white; width: 24px; height: 24px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 14px; line-height: 1; cursor: pointer;
-        }
-        
-        #chatbot-toggle {
-            position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 100;
-        }
-        #chatbot-container {
-            position: fixed; bottom: 6rem; right: 2rem; width: 90vw; max-width: 400px;
-            height: 60vh; max-height: 550px; min-width: 300px; min-height: 400px;
-            border-radius: 1.5rem; overflow: hidden; display: flex; flex-direction: column;
-            transform: scale(0); transform-origin: bottom right; transition: transform 0.3s ease-in-out;
-            z-index: 99; resize: both; border: 2px solid transparent;
-        }
-        #chatbot-container:active, #chatbot-container:focus-within { border-color: #f6c05c; }
-        #chatbot-container.active { transform: scale(1); }
-        #chatbot-header { cursor: move; }
-        .chat-message {
-            padding: 0.75rem 1rem; border-radius: 1rem; margin-bottom: 0.5rem;
-            max-width: 85%; line-height: 1.5; word-wrap: break-word;
-        }
-        .user-message {
-            background-color: #ec7137; color: white; align-self: flex-end;
-            border-bottom-right-radius: 0.25rem;
-        }
-        .bot-message {
-            background-color: #374151; color: #e0e0e0; align-self: flex-start;
-            border-bottom-left-radius: 0.25rem;
-        }
-        #quick-replies {
-            padding: 0.5rem 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .quick-reply-btn {
-            background-color: #4a5568; color: #e0e0e0; padding: 0.5rem 0.75rem;
-            border-radius: 1rem; font-size: 0.8rem; cursor: pointer;
-            transition: background-color 0.2s; border: 1px solid #6b7280;
-        }
-        .quick-reply-btn:hover { background-color: #6b7280; }
-        #chat-messages::-webkit-scrollbar { width: 6px; }
-        #chat-messages::-webkit-scrollbar-track { background: transparent; }
-    #chat-messages::-webkit-scrollbar-thumb { background: #ca8649; border-radius: 3px;}
-    #chat-messages::-webkit-scrollbar-thumb { background: #f6ad47; border-radius: 3px;}
+      }
+      .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+      }
+      .animated-section {
+        opacity: 0;
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        transform: translateY(30px);
+      }
+      .animated-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-        #search-container {
-            position: fixed;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 60;
-            width: 90%;
-            max-width: 500px;
-        }
-        #search-input {
-            width: 100%;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        #search-input:focus {
-            box-shadow: 0 0 20px rgba(211, 96, 38, 0.5);
-            border-color: rgba(211, 147, 38, 0.7);
-        }
-        #search-dropdown {
-            position: absolute;
-            bottom: 110%;
-            left: 0;
-            right: 0;
-            max-height: 300px;
-            overflow-y: auto;
-            background: rgba(30, 41, 59, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .search-item {
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .search-item:hover {
-            background-color: rgba(79, 70, 229, 0.5);
-        }
-        .search-item strong {
-            color: #cd7e7e;
-        }
+      #chat-bubble {
+        position: fixed;
+        bottom: 6.5rem;
+        right: 1.5rem;
+        z-index: 101;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transform-origin: bottom right;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      #chat-bubble-message {
+        background: white;
+        color: #1e293b;
+        padding: 0.75rem 1.25rem;
+        border-radius: 1.5rem;
+        font-weight: 500;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+      #chat-bubble-message::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: -8px;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-top-color: white;
+        border-bottom: 0;
+        border-right: 0;
+        margin-bottom: 5px;
+        transform: rotate(30deg);
+      }
+      #close-bubble-btn {
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      #chatbot-toggle {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 100;
+      }
+      #chatbot-container {
+        position: fixed;
+        bottom: 6rem;
+        right: 2rem;
+        width: 90vw;
+        max-width: 400px;
+        height: 60vh;
+        max-height: 550px;
+        min-width: 300px;
+        min-height: 400px;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transform: scale(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-in-out;
+        z-index: 99;
+        resize: both;
+        border: 2px solid transparent;
+      }
+      #chatbot-container:active,
+      #chatbot-container:focus-within {
+        border-color: #f6c05c;
+      }
+      #chatbot-container.active {
+        transform: scale(1);
+      }
+      #chatbot-header {
+        cursor: move;
+      }
+      .chat-message {
+        padding: 0.75rem 1rem;
+        border-radius: 1rem;
+        margin-bottom: 0.5rem;
+        max-width: 85%;
+        line-height: 1.5;
+        word-wrap: break-word;
+      }
+      .user-message {
+        background-color: #ec7137;
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 0.25rem;
+      }
+      .bot-message {
+        background-color: #374151;
+        color: #e0e0e0;
+        align-self: flex-start;
+        border-bottom-left-radius: 0.25rem;
+      }
+      #quick-replies {
+        padding: 0.5rem 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .quick-reply-btn {
+        background-color: #4a5568;
+        color: #e0e0e0;
+        padding: 0.5rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        border: 1px solid #6b7280;
+      }
+      .quick-reply-btn:hover {
+        background-color: #6b7280;
+      }
+      #chat-messages::-webkit-scrollbar {
+        width: 6px;
+      }
+      #chat-messages::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      #chat-messages::-webkit-scrollbar-thumb {
+        background: #ca8649;
+        border-radius: 3px;
+      }
+      #chat-messages::-webkit-scrollbar-thumb {
+        background: #f6ad47;
+        border-radius: 3px;
+      }
+
+      #search-container {
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 60;
+        width: 90%;
+        max-width: 500px;
+      }
+      #search-input {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+      #search-input:focus {
+        box-shadow: 0 0 20px rgba(211, 96, 38, 0.5);
+        border-color: rgba(211, 147, 38, 0.7);
+      }
+      #search-dropdown {
+        position: absolute;
+        bottom: 110%;
+        left: 0;
+        right: 0;
+        max-height: 300px;
+        overflow-y: auto;
+        background: rgba(30, 41, 59, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .search-item {
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .search-item:hover {
+        background-color: rgba(79, 70, 229, 0.5);
+      }
+      .search-item strong {
+        color: #cd7e7e;
+      }
     </style>
-</head>
-<body class="overflow-x-hidden">
+  </head>
+  <body class="overflow-x-hidden">
     <canvas id="space-background"></canvas>
 
     <!-- Header & Navigasi -->
     <div id="navbar-container" class="hidden md:block">
-        <header id="navbar" class="glass-card transition-all duration-300">
-            <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-                <h1 class="text-2xl font-bold text-white">TEC OHU</h1>
-                <nav class="flex items-center space-x-8">
-                    <a href="#hero" class="hover:text-purple-400 transition">Beranda</a>
-                    <a href="#tentang" class="hover:text-purple-400 transition">Tentang</a>
-                    <a href="#program" class="hover:text-purple-400 transition">Program</a>
-                    <a href="#tecfest" class="hover:text-purple-400 transition">TECFEST</a>
-                    <a href="#kisah" class="hover:text-purple-400 transition">Kisah</a>
-                    <a href="#daftar" class="hover:text-purple-400 transition">Daftar</a>
-                </nav>
-            </div>
-        </header>
+      <header id="navbar" class="glass-card transition-all duration-300">
+        <div
+          class="container mx-auto px-6 py-3 flex justify-between items-center"
+        >
+          <h1 class="text-2xl font-bold text-white">TEC OHU</h1>
+          <nav class="flex items-center space-x-8">
+            <a href="#hero" class="hover:text-purple-400 transition">Beranda</a>
+            <a href="#tentang" class="hover:text-purple-400 transition"
+              >Tentang</a
+            >
+            <a href="#program" class="hover:text-purple-400 transition"
+              >Program</a
+            >
+            <a href="#tecfest" class="hover:text-purple-400 transition"
+              >TECFEST</a
+            >
+            <a href="#katamereka" class="hover:text-purple-400 transition"
+              >Kata Mereka</a
+            >
+            <a href="#daftar" class="hover:text-purple-400 transition"
+              >Daftar</a
+            >
+          </nav>
+        </div>
+      </header>
     </div>
     <!-- Mobile Bottom Nav -->
     <div class="md:hidden fixed bottom-0 left-0 right-0 z-50">
-        <div class="glass-card mx-4 mb-4 rounded-full shadow-lg">
-             <nav class="flex justify-around py-3">
-                <a href="#hero" class="text-gray-300 hover:text-purple-400 transition text-center"><svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg><span class="text-xs">Beranda</span></a>
-                <a href="#program" class="text-gray-300 hover:text-purple-400 transition text-center"><svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg><span class="text-xs">Program</span></a>
-                <a href="#tecfest" class="text-gray-300 hover:text-purple-400 transition text-center"><svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V4a2 2 0 012-2h8a2 2 0 012 2v4z"></path></svg><span class="text-xs">Acara</span></a>
-                <a href="#daftar" class="text-gray-300 hover:text-purple-400 transition text-center"><svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg><span class="text-xs">Daftar</span></a>
-            </nav>
-        </div>
+      <div class="glass-card mx-4 mb-4 rounded-full shadow-lg">
+        <nav class="flex justify-around py-3">
+          <a
+            href="#hero"
+            class="text-gray-300 hover:text-purple-400 transition text-center"
+            ><svg
+              class="w-6 h-6 mx-auto"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              ></path></svg
+            ><span class="text-xs">Beranda</span></a
+          >
+          <a
+            href="#program"
+            class="text-gray-300 hover:text-purple-400 transition text-center"
+            ><svg
+              class="w-6 h-6 mx-auto"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+              ></path></svg
+            ><span class="text-xs">Program</span></a
+          >
+          <a
+            href="#tecfest"
+            class="text-gray-300 hover:text-purple-400 transition text-center"
+            ><svg
+              class="w-6 h-6 mx-auto"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V4a2 2 0 012-2h8a2 2 0 012 2v4z"
+              ></path></svg
+            ><span class="text-xs">Acara</span></a
+          >
+          <a
+            href="#daftar"
+            class="text-gray-300 hover:text-purple-400 transition text-center"
+            ><svg
+              class="w-6 h-6 mx-auto"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+              ></path></svg
+            ><span class="text-xs">Daftar</span></a
+          >
+        </nav>
+      </div>
     </div>
-    
+
     <!-- Search Box -->
     <div id="search-container" class="hidden md:block">
-        <input type="text" id="search-input" placeholder="Cari tahu tentang TEC...">
-        <div id="search-dropdown" class="hidden"></div>
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Cari tahu tentang TEC..."
+      />
+      <div id="search-dropdown" class="hidden"></div>
     </div>
 
     <!-- Hero Section -->
-    <main id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-32">
-        <div class="container mx-auto px-6 z-10">
-            <h2 class="text-4xl md:text-7xl font-extrabold text-white leading-tight mb-4 animate-fade-in-up" style="animation-delay: 0.2s;">
-                Techno Entrepreneur Club
-            </h2>
-            <h3 class="text-3xl md:text-5xl font-bold mb-6 animate-fade-in-up" style="color: rgb(255, 249, 171); animation-delay: 0.4s;">
-                Open House Unit 2025
-            </h3>
-            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.6s;">
-                Jelajahi galaksi inovasi dan kewirausahaan. Temukan potensimu dan jadilah bintang selanjutnya bersama TEC ITB.
-            </p>
-            <button id="daftar-hero-btn" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg animate-fade-in-up" style="animation-delay: 0.8s;">
-                Daftar Sekarang
-            </button>
-        </div>
+    <main
+      id="hero"
+      class="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-32"
+    >
+      <div class="container mx-auto px-6 z-10">
+        <h2
+          class="text-4xl md:text-7xl font-extrabold text-white leading-tight mb-4 animate-fade-in-up"
+          style="animation-delay: 0.2s"
+        >
+          Techno Entrepreneur Club ITB
+        </h2>
+        <h3
+          class="text-3xl md:text-5xl font-bold mb-6 animate-fade-in-up"
+          style="color: rgb(255, 249, 171); animation-delay: 0.4s"
+        >
+          Open House Unit 2025
+        </h3>
+        <p
+          class="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up"
+          style="animation-delay: 0.6s"
+        >
+          Jelajahi galaksi inovasi dan kewirausahaan. Temukan potensimu dan
+          jadilah bintang selanjutnya bersama TEC ITB.
+        </p>
+        <button
+          id="daftar-hero-btn"
+          class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg animate-fade-in-up"
+          style="animation-delay: 0.8s"
+        >
+          Daftar Sekarang
+        </button>
+      </div>
     </main>
 
     <!-- Konten Sections -->
     <section id="tentang" class="py-20 animated-section">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center mb-2 text-white">Mengenal Jati Diri TEC ITB</h3>
-            <p class="text-center text-gray-400 mb-12">Dari E-Club hingga menjadi pusat technopreneurship terkemuka.</p>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card rounded-xl p-8 text-center">
-                    <div class="text-5xl mb-4">🗓️</div>
-                    <h4 class="text-xl font-semibold text-white mb-2">Sejarah Kami</h4>
-                    <p class="text-gray-300">Didirikan 19 Desember 2007 sebagai 'E-Club', lalu bertransformasi menjadi TEC ITB di 2009 untuk fokus pada wirausaha berbasis teknologi, diinisiasi oleh figur seperti Achmad Zaky (Founder Bukalapak).</p>
-                </div>
-                <div class="glass-card rounded-xl p-8 text-center">
-                    <div class="text-5xl mb-4">🎯</div>
-                    <h4 class="text-xl font-semibold text-white mb-2">Visi & Misi</h4>
-                    <p class="text-gray-300">Visi Kabinet Lakskarsa: Menjadi wadah aktualisasi diri yang inklusif, kolaboratif, dan berdampak global. Misi kami berfokus pada efisiensi, inovasi, dan perluasan jaringan.</p>
-                </div>
-                <div class="glass-card rounded-xl p-8 text-center">
-                    <div class="text-5xl mb-4">🌟</div>
-                    <h4 class="text-xl font-semibold text-white mb-2">3 Pilar Filosofi</h4>
-                    <p class="text-gray-300"><b>Global:</b> Pola pikir dan jaringan internasional. <b>Enrich:</b> Memperkaya skill kewirausahaan. <b>High Impact:</b> Menciptakan dampak positif yang nyata dan terukur.</p>
-                </div>
-            </div>
+      <div class="container mx-auto px-6">
+        <h3 class="text-3xl font-bold text-center mb-2 text-white">
+          Mengenal Jati Diri TEC ITB
+        </h3>
+        <p class="text-center text-gray-400 mb-12">
+          Dari E-Club hingga menjadi pusat technopreneurship terkemuka.
+        </p>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="glass-card rounded-xl p-8 text-center">
+            <div class="text-5xl mb-4">🗓️</div>
+            <h4 class="text-xl font-semibold text-white mb-2">Sejarah Kami</h4>
+            <p class="text-gray-300">
+              Didirikan 19 Desember 2007 sebagai 'E-Club', lalu bertransformasi
+              menjadi TEC ITB di 2009 untuk fokus pada wirausaha berbasis
+              teknologi, diinisiasi oleh figur seperti Achmad Zaky (Founder
+              Bukalapak).
+            </p>
+          </div>
+          <div class="glass-card rounded-xl p-8 text-center">
+            <div class="text-5xl mb-4">🎯</div>
+            <h4 class="text-xl font-semibold text-white mb-2">Visi & Misi</h4>
+            <p class="text-gray-300">
+              Visi Kabinet Lakskarsa: Menjadi wadah aktualisasi diri yang
+              inklusif, kolaboratif, dan berdampak global. Misi kami berfokus
+              pada efisiensi, inovasi, dan perluasan jaringan.
+            </p>
+          </div>
+          <div class="glass-card rounded-xl p-8 text-center">
+            <div class="text-5xl mb-4">🌟</div>
+            <h4 class="text-xl font-semibold text-white mb-2">
+              3 Pilar Filosofi
+            </h4>
+            <p class="text-gray-300">
+              <b>Global:</b> Pola pikir dan jaringan internasional.
+              <b>Enrich:</b> Memperkaya skill kewirausahaan.
+              <b>High Impact:</b> Menciptakan dampak positif yang nyata dan
+              terukur.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="program" class="py-20 bg-black/20 animated-section">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center mb-2 text-white">Program Unggulan Kami</h3>
-            <p class="text-center text-gray-400 mb-12">Beberapa program yang membentuk talenta wirausaha masa depan dengan pengalaman nyata.</p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass-card rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-5xl mb-4">💡</div>
-                    <h4 class="text-lg font-semibold text-white">IncubaTEC</h4>
-                    <p class="text-gray-300">Inkubator bisnis internal untuk mengembangkan ide menjadi startup nyata dengan bimbingan intensif.</p>
-                </div>
-                <div class="glass-card rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-5xl mb-4">🏢</div>
-                    <h4 class="text-lg font-semibold text-white">Company Visit</h4>
-                    <p class="text-gray-300">Kunjungan industri untuk belajar langsung dari para ahli dan melihat praktik bisnis terbaik.</p>
-                </div>
-                <div class="glass-card rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-5xl mb-4">🤝</div>
-                    <h4 class="text-lg font-semibold text-white">Tech Companion</h4>
-                    <p class="text-gray-300">Program mentorship yang menghubungkan anggota dengan para profesional dan alumni sukses.</p>
-                </div>
-                <div class="glass-card rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-5xl mb-4">📈</div>
-                    <h4 class="text-lg font-semibold text-white">Training & Development</h4>
-                    <p class="text-gray-300">Serangkaian pelatihan untuk membangun skill fundamental bisnis, dari marketing hingga keuangan.</p>
-                </div>
-            </div>
+      <div class="container mx-auto px-6">
+        <h3 class="text-3xl font-bold text-center mb-2 text-white">
+          Program Unggulan Kami
+        </h3>
+        <p class="text-center text-gray-400 mb-12">
+          Beberapa program yang membentuk talenta wirausaha masa depan dengan
+          pengalaman nyata.
+        </p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div
+            class="glass-card rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div class="text-5xl mb-4">💡</div>
+            <h4 class="text-lg font-semibold text-white">IncubaTEC</h4>
+            <p class="text-gray-300">
+              Inkubator bisnis internal untuk mengembangkan ide menjadi startup
+              nyata dengan bimbingan intensif.
+            </p>
+          </div>
+          <div
+            class="glass-card rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div class="text-5xl mb-4">🏢</div>
+            <h4 class="text-lg font-semibold text-white">Company Visit</h4>
+            <p class="text-gray-300">
+              Kunjungan industri untuk belajar langsung dari para ahli dan
+              melihat praktik bisnis terbaik.
+            </p>
+          </div>
+          <div
+            class="glass-card rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div class="text-5xl mb-4">🤝</div>
+            <h4 class="text-lg font-semibold text-white">Tech Companion</h4>
+            <p class="text-gray-300">
+              Program mentorship yang menghubungkan anggota dengan para
+              profesional dan alumni sukses.
+            </p>
+          </div>
+          <div
+            class="glass-card rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div class="text-5xl mb-4">📈</div>
+            <h4 class="text-lg font-semibold text-white">
+              Training & Development
+            </h4>
+            <p class="text-gray-300">
+              Serangkaian pelatihan untuk membangun skill fundamental bisnis,
+              dari marketing hingga keuangan.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="tecfest" class="py-20 animated-section">
-        <div class="container mx-auto px-6">
-            <div class="text-center">
-                <h3 class="text-4xl font-bold text-white mb-4">TECFEST: Panggung Inovasi Global</h3>
-                <p class="text-gray-400 mb-12 max-w-3xl mx-auto">TEC Festival adalah sebuah acara besar tahunan TEC ITB yang berisikan rangkaian perlombaan Business Case dan Business Plan Competition yang dilengkapi dengan acara puncak berupa sesi Talkshow dan Final dari perlombaan yang diadakan.</p>
-            </div>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                <div class="glass-card rounded-xl p-8 w-full md:w-1/2">
-                    <h4 class="text-2xl font-bold mb-3" style="background: linear-gradient(90deg, orange, rgb(255, 249, 171), rgb(255, 249, 171)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">Business Plan Competition (BPC)</h4>
-                    <p class="text-gray-300">Kompetisi rencana bisnis internasional dengan fitur unik 'SharkTEC', di mana finalis melakukan pitching langsung di hadapan investor untuk peluang pendanaan nyata. 💰</p>
-                </div>
-                <div class="glass-card rounded-xl p-8 w-full md:w-1/2">
-                    <h4 class="text-2xl font-bold mb-3" style="background: linear-gradient(90deg, orange, rgb(255, 249, 171), rgb(255, 249, 171)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">Business Case Competition (BCC)</h4>
-                    <p class="text-gray-300">Kompetisi studi kasus internasional di mana peserta ditantang memecahkan masalah bisnis nyata dari perusahaan mitra ternama. 🧠</p>
-                </div>
-            </div>
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <h3 class="text-4xl font-bold text-white mb-4">
+            TECFEST: Panggung Inovasi Global
+          </h3>
+          <p class="text-gray-400 mb-12 max-w-3xl mx-auto">
+            TEC Festival adalah sebuah acara besar tahunan TEC ITB yang
+            berisikan rangkaian perlombaan Business Case dan Business Plan
+            Competition yang dilengkapi dengan acara puncak berupa sesi Talkshow
+            dan Final dari perlombaan yang diadakan.
+          </p>
         </div>
+        <div
+          class="flex flex-col md:flex-row items-center justify-center gap-8"
+        >
+          <div class="glass-card rounded-xl p-8 w-full md:w-1/2">
+            <h4
+              class="text-2xl font-bold mb-3"
+              style="
+                background: linear-gradient(
+                  90deg,
+                  orange,
+                  rgb(255, 249, 171),
+                  rgb(255, 249, 171)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
+              "
+            >
+              Business Plan Competition (BPC)
+            </h4>
+            <p class="text-gray-300">
+              Kompetisi rencana bisnis internasional dengan fitur unik
+              'SharkTEC', di mana finalis melakukan pitching langsung di hadapan
+              investor untuk peluang pendanaan nyata. 💰
+            </p>
+          </div>
+          <div class="glass-card rounded-xl p-8 w-full md:w-1/2">
+            <h4
+              class="text-2xl font-bold mb-3"
+              style="
+                background: linear-gradient(
+                  90deg,
+                  orange,
+                  rgb(255, 249, 171),
+                  rgb(255, 249, 171)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
+              "
+            >
+              Business Case Competition (BCC)
+            </h4>
+            <p class="text-gray-300">
+              Kompetisi studi kasus internasional di mana peserta ditantang
+              memecahkan masalah bisnis nyata dari perusahaan mitra ternama. 🧠
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="kisah" class="py-20 bg-black/20 animated-section">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center mb-2 text-white">Kisah Sukses dari Ekosistem TEC</h3>
-            <p class="text-center text-gray-400 mb-12">Mereka yang telah memulai perjalanannya dan meraih prestasi gemilang.</p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass-card rounded-xl p-6 transform hover:scale-105 transition-transform duration-300"> <img src="https://placehold.co/100x100/4f46e5/ffffff?text=AR" alt="Alumni" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-purple-500"> <h4 class="text-xl font-semibold text-center text-white">Andi Ramadhan</h4> <p class="text-sm text-center text-purple-300 mb-4">Founder, TechNova</p> <p class="text-gray-300 text-center text-sm">"TEC bukan hanya UKM, tapi sebuah launchpad. Di sini saya belajar membangun ide dari nol."</p> </div>
-                <div class="glass-card rounded-xl p-6 transform hover:scale-105 transition-transform duration-300"> <img src="https://placehold.co/100x100/c026d3/ffffff?text=SA" alt="Alumni" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-pink-500"> <h4 class="text-xl font-semibold text-center text-white">Siti Aisyah</h4> <p class="text-sm text-center text-pink-300 mb-4">Product Manager, GoJek</p> <p class="text-gray-300 text-center text-sm">"Kemampuan problem-solving dan networking yang saya dapatkan di TEC sangat berharga."</p> </div>
-                <div class="glass-card rounded-xl p-6 transform hover:scale-105 transition-transform duration-300"> <img src="https://placehold.co/100x100/10b981/ffffff?text=BW" alt="Alumni" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-emerald-500"> <h4 class="text-xl font-semibold text-center text-white">Budi Waseso</h4> <p class="text-sm text-center text-emerald-300 mb-4">Venture Capitalist</p> <p class="text-gray-300 text-center text-sm">"Mengenal model bisnis di TEC membuat saya lebih tajam melihat potensi sebuah startup."</p> </div>
-                <div class="glass-card rounded-xl p-6 transform hover:scale-105 transition-transform duration-300"> <img src="https://placehold.co/100x100/f59e0b/ffffff?text=VR" alt="Prestasi" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-amber-500"> <h4 class="text-xl font-semibold text-center text-white">Velocity Rumpita</h4> <p class="text-sm text-center text-amber-300 mb-4">Juara 2 Makarapreneur 2025</p> <p class="text-gray-300 text-center text-sm">"Berkat mentorship 'Tech Companion', inovasi kami bahkan dilirik oleh KKP RI. 🏆"</p> </div>
-            </div>
+    <section id="katamereka" class="py-20 bg-black/20 animated-section">
+      <div class="container mx-auto px-6">
+        <h3 class="text-3xl font-bold text-center mb-2 text-white">
+          Apa Kata Mereka?
+        </h3>
+        <p class="text-center text-gray-400 mb-12">
+          Mereka yang telah menjalani kehidupan dan kebersamaan di TEC ITB🚀🚀.
+        </p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div
+            class="glass-card rounded-xl p-6 transform hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="foto-jasmine.jpg"
+              alt="Ketua TEC OHU 2025"
+              class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-purple-500"
+            />
+            <h4 class="text-xl font-semibold text-center text-white">
+              Jasmine Oryza
+            </h4>
+            <p class="text-sm text-center text-purple-300 mb-4">
+              Ketua TEC OHU 2025
+            </p>
+            <p class="text-gray-300 text-center text-sm">
+              "Bagi aku, TEC bukan sekadar tempat untuk berkembang, tapi rumah
+              yang penuh kehangatan dan dukungan dari orang-orang luar biasa di
+              dalamnya. Kalau harus ngulang seribu kali pun pasti aku bakal
+              tetep milih TEC!"
+            </p>
+          </div>
+          <div
+            class="glass-card rounded-xl p-6 transform hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="foto-raha(1).jpg"
+              alt="Wakil Ketua TEC OHU 2025"
+              class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-pink-500"
+            />
+            <h4 class="text-xl font-semibold text-center text-white">
+              Rahadian Cahika Wicaksono
+            </h4>
+            <p class="text-sm text-center text-pink-300 mb-4">
+              Wakil Ketua TEC OHU 2025
+            </p>
+            <p class="text-gray-300 text-center text-sm">
+              "Buat aku, TEC itu pintu yang ngebuka banyak jalan baru.
+              Definitely a good start buat mulai bergelut di dunia bisnis lewat
+              lingkungan dan exposure berharga yang TEC tawarin."
+            </p>
+          </div>
+          <!-- <div
+            class="glass-card rounded-xl p-6 transform hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="https://placehold.co/100x100/10b981/ffffff?text=BW"
+              alt="Alumni"
+              class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-emerald-500"
+            />
+            <h4 class="text-xl font-semibold text-center text-white">
+              Budi Waseso
+            </h4>
+            <p class="text-sm text-center text-emerald-300 mb-4">
+              Venture Capitalist
+            </p>
+            <p class="text-gray-300 text-center text-sm">
+              "Mengenal model bisnis di TEC membuat saya lebih tajam melihat
+              potensi sebuah startup."
+            </p>
+          </div>
+          <div
+            class="glass-card rounded-xl p-6 transform hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="https://placehold.co/100x100/f59e0b/ffffff?text=VR"
+              alt="Prestasi"
+              class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-amber-500"
+            />
+            <h4 class="text-xl font-semibold text-center text-white">
+              Velocity Rumpita
+            </h4>
+            <p class="text-sm text-center text-amber-300 mb-4">
+              Juara 2 Makarapreneur 2025
+            </p>
+            <p class="text-gray-300 text-center text-sm">
+              "Berkat mentorship 'Tech Companion', inovasi kami bahkan dilirik
+              oleh KKP RI. 🏆"
+            </p>
+          </div> -->
         </div>
+      </div>
     </section>
 
     <section id="daftar" class="py-20 animated-section">
-        <div class="container mx-auto px-6 text-center">
-            <h3 class="text-3xl font-bold text-white mb-4">Siap untuk Meluncur?</h3>
-            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Amankan tempatmu di TEC Open House Unit 2025. Proses pendaftaran hanya beberapa langkah lagi.</p>
-            <button id="daftar-main-btn" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg">Daftar Sekarang</button>
-        </div>
+      <div class="container mx-auto px-6 text-center">
+        <h3 class="text-3xl font-bold text-white mb-4">Siap untuk Meluncur?</h3>
+        <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+          Amankan tempatmu di TEC Open House Unit 2025. Proses pendaftaran hanya
+          beberapa langkah lagi.
+        </p>
+        <button
+          id="daftar-main-btn"
+          class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg"
+        >
+          Daftar Sekarang
+        </button>
+      </div>
     </section>
-    
+
     <footer class="bg-gray-900/50 py-8 mt-24 md:mt-0 md:pb-8">
-        <div class="container mx-auto px-6 text-center text-gray-400">
-            <p>&copy; 2025 Techno Entrepreneur Club, Institut Teknologi Bandung. All rights reserved.</p>
-        </div>
+      <div class="container mx-auto px-6 text-center text-gray-400">
+        <p>
+          &copy; 2025 Techno Entrepreneur Club, Institut Teknologi Bandung. All
+          rights reserved.
+        </p>
+      </div>
     </footer>
 
     <!-- Modal Pendaftaran -->
-    <div id="registration-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] hidden">
-        <div class="glass-card w-full max-w-md rounded-2xl shadow-2xl p-8 relative m-4 max-h-[90vh] overflow-y-auto">
-            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
-            <!-- Step 1: Data Diri -->
-            <div id="step-1">
-                <h3 class="text-2xl font-bold text-white mb-6 text-center">Pendaftaran OHU TEC 2025</h3>
-                <form id="form-step-1">
-                    <div class="mb-4"><label for="nama" class="block text-sm font-medium text-gray-300 mb-1">Nama Lengkap</label><input type="text" id="nama" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500" required></div>
-                    <div class="mb-4"><label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label><input type="email" id="email" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500" required></div>
-                    <div class="mb-6"><label for="fakultas" class="block text-sm font-medium text-gray-300 mb-1">Fakultas/Jurusan</label><input type="text" id="fakultas" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500" required></div>
-                    <button type="submit" class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full">Lanjut ke Foto Diri</button>
-                </form>
+    <div
+      id="registration-modal"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] hidden"
+    >
+      <div
+        class="glass-card w-full max-w-md rounded-2xl shadow-2xl p-8 relative m-4 max-h-[90vh] overflow-y-auto"
+      >
+        <button
+          id="close-modal-btn"
+          class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl"
+        >
+          &times;
+        </button>
+        <!-- Step 1: Data Diri -->
+        <div id="step-1">
+          <h3 class="text-2xl font-bold text-white mb-6 text-center">
+            Pendaftaran OHU TEC 2025
+          </h3>
+          <form id="form-step-1">
+            <div class="mb-4">
+              <label
+                for="nama"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                >Nama Lengkap</label
+              ><input
+                type="text"
+                id="nama"
+                class="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                required
+              />
             </div>
-            <!-- Step 2: Ambil Foto -->
-            <div id="step-2" class="hidden text-center">
-                 <h3 class="text-2xl font-bold text-white mb-4">Foto Diri</h3>
-                 <div id="photo-preview-container" class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden mb-4 hidden">
-                    <img id="photo-preview" class="w-full h-full object-cover" />
-                 </div>
-                 <div id="camera-container" class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden mb-4">
-                    <video id="camera-feed" class="w-full h-full object-cover" autoplay playsinline></video>
-                    <canvas id="photo-canvas" class="absolute top-0 left-0 w-full h-full object-cover hidden"></canvas>
-                 </div>
-                 <div id="photo-options" class="space-y-2">
-                    <button id="take-photo-btn" class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full">Ambil Foto</button>
-                    <button id="upload-photo-btn" class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full">Unggah Foto</button>
-                    <input type="file" id="photo-upload" class="hidden" accept="image/*" />
-                 </div>
-                 <div id="retake-options" class="hidden space-y-2">
-                    <button id="retake-photo-btn" class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full">Ulangi / Ganti Foto</button>
-                    <button id="confirm-photo-btn" class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full">Konfirmasi Foto</button>
-                 </div>
+            <div class="mb-4">
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                >Email</label
+              ><input
+                type="email"
+                id="email"
+                class="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                required
+              />
             </div>
-            <!-- Step 3: Konfirmasi & Pembayaran -->
-            <div id="step-3" class="hidden text-center">
-                <div class="text-6xl mb-4">👍</div>
-                <h3 class="text-2xl font-bold text-white mb-4">Pendaftaran Awal Berhasil!</h3>
-                <p class="text-gray-300 mb-6">Data Anda sudah tersimpan. Silakan unduh E-Ticket Anda dan selesaikan pembayaran untuk mengonfirmasi pendaftaran.</p>
-                <button id="final-download-btn" class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full mb-3">Unduh E-Ticket</button>
-                <a href="https://lynk.id/tecitb" target="_blank" id="payment-link-btn" class="block w-full btn-primary text-white font-bold py-3 px-8 rounded-full">Lanjutkan Pembayaran</a>
+            <div class="mb-6">
+              <label
+                for="fakultas"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                >Fakultas/Jurusan</label
+              ><input
+                type="text"
+                id="fakultas"
+                class="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                required
+              />
             </div>
+            <button
+              type="submit"
+              class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
+            >
+              Lanjut ke Foto Diri
+            </button>
+          </form>
         </div>
+        <!-- Step 2: Ambil Foto -->
+        <div id="step-2" class="hidden text-center">
+          <h3 class="text-2xl font-bold text-white mb-4">Foto Diri</h3>
+          <div
+            id="photo-preview-container"
+            class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden mb-4 hidden"
+          >
+            <img id="photo-preview" class="w-full h-full object-cover" />
+          </div>
+          <div
+            id="camera-container"
+            class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden mb-4"
+          >
+            <video
+              id="camera-feed"
+              class="w-full h-full object-cover"
+              autoplay
+              playsinline
+            ></video>
+            <canvas
+              id="photo-canvas"
+              class="absolute top-0 left-0 w-full h-full object-cover hidden"
+            ></canvas>
+          </div>
+          <div id="photo-options" class="space-y-2">
+            <button
+              id="take-photo-btn"
+              class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
+            >
+              Ambil Foto
+            </button>
+            <button
+              id="upload-photo-btn"
+              class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full"
+            >
+              Unggah Foto
+            </button>
+            <input
+              type="file"
+              id="photo-upload"
+              class="hidden"
+              accept="image/*"
+            />
+          </div>
+          <div id="retake-options" class="hidden space-y-2">
+            <button
+              id="retake-photo-btn"
+              class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full"
+            >
+              Ulangi / Ganti Foto
+            </button>
+            <button
+              id="confirm-photo-btn"
+              class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
+            >
+              Konfirmasi Foto
+            </button>
+          </div>
+        </div>
+        <!-- Step 3: Konfirmasi & Pembayaran -->
+        <div id="step-3" class="hidden text-center">
+          <div class="text-6xl mb-4">👍</div>
+          <h3 class="text-2xl font-bold text-white mb-4">
+            Pendaftaran Awal Berhasil!
+          </h3>
+          <p class="text-gray-300 mb-6">
+            Data Anda sudah tersimpan. Silakan unduh E-Ticket Anda dan
+            selesaikan pembayaran untuk mengonfirmasi pendaftaran.
+          </p>
+          <button
+            id="final-download-btn"
+            class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full mb-3"
+          >
+            Unduh E-Ticket
+          </button>
+          <a
+            href="https://lynk.id/tecitb"
+            target="_blank"
+            id="payment-link-btn"
+            class="block w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
+            >Lanjutkan Pembayaran</a
+          >
+        </div>
+      </div>
     </div>
 
     <!-- AI Chatbot & Bubble -->
     <div id="chat-bubble">
-        <div id="chat-bubble-message">Ada yang bisa dibantu? ✨</div>
-        <button id="close-bubble-btn">&times;</button>
+      <div id="chat-bubble-message">Ada yang bisa dibantu? ✨</div>
+      <button id="close-bubble-btn">&times;</button>
     </div>
     <button id="chatbot-toggle" class="btn-primary">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm1.5 0a.5.5 0 00-.5.5v6a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V5.5a.5.5 0 00-.5-.5h-11z"/><path d="M3 3.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5z"/></svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8 text-white"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          d="M2 5a2 2 0 012-2h12a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm1.5 0a.5.5 0 00-.5.5v6a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V5.5a.5.5 0 00-.5-.5h-11z"
+        />
+        <path d="M3 3.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5z" />
+      </svg>
     </button>
     <div id="chatbot-container" class="glass-card">
-        <div id="chatbot-header" class="p-4 bg-gray-900/50 flex justify-between items-center"><h3 class="font-bold text-white">TEChat Assistant</h3><button id="close-chatbot" class="text-white text-2xl leading-none">&times;</button></div>
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto flex flex-col"></div>
-        <div id="quick-replies"></div>
-        <div class="p-4 bg-gray-900/50 flex items-center">
-            <input type="text" id="chat-input" placeholder="Tanya tentang TEC..." class="flex-1 bg-gray-700 border border-gray-600 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500">
-            <button id="send-btn" class="p-2 ml-2 text-gray-300 hover:text-white transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg></button>
-        </div>
+      <div
+        id="chatbot-header"
+        class="p-4 bg-gray-900/50 flex justify-between items-center"
+      >
+        <h3 class="font-bold text-white">TEChat Assistant</h3>
+        <button id="close-chatbot" class="text-white text-2xl leading-none">
+          &times;
+        </button>
+      </div>
+      <div
+        id="chat-messages"
+        class="flex-1 p-4 overflow-y-auto flex flex-col"
+      ></div>
+      <div id="quick-replies"></div>
+      <div class="p-4 bg-gray-900/50 flex items-center">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Tanya tentang TEC..."
+          class="flex-1 bg-gray-700 border border-gray-600 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
+        <button
+          id="send-btn"
+          class="p-2 ml-2 text-gray-300 hover:text-white transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         // --- UPGRADE: Animated Space Background ---
-        const canvas = document.getElementById('space-background');
-        const ctx = canvas.getContext('2d');
-        let stars = [], comets = [], nebulae = [];
+        const canvas = document.getElementById("space-background");
+        const ctx = canvas.getContext("2d");
+        let stars = [],
+          comets = [],
+          nebulae = [];
 
         function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            stars = Array.from({ length: 200 }, () => ({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 1.5, alpha: Math.random() }));
-            comets = Array.from({ length: 2 }, () => createComet());
-            nebulae = Array.from({ length: 3 }, () => createNebula());
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          stars = Array.from({ length: 200 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5,
+            alpha: Math.random(),
+          }));
+          comets = Array.from({ length: 2 }, () => createComet());
+          nebulae = Array.from({ length: 3 }, () => createNebula());
         }
 
         function createComet() {
-            return {
-                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-                radius: Math.random() * 2 + 1, speed: Math.random() * 0.5 + 0.2,
-                angle: Math.random() * Math.PI * 2, length: Math.random() * 150 + 50
-            };
+          return {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 2 + 1,
+            speed: Math.random() * 0.5 + 0.2,
+            angle: Math.random() * Math.PI * 2,
+            length: Math.random() * 150 + 50,
+          };
         }
 
         function createNebula() {
-            const colors = [
-                ['rgba(194, 24, 7, 0.25)', 'rgba(255, 87, 34, 0.12)'], 
-                ['rgba(255, 140, 0, 0.18)', 'rgba(255, 215, 0, 0.09)'], 
-                ['rgba(255, 87, 34, 0.22)', 'rgba(255, 215, 0, 0.11)']  
-            ];
-            const colorPair = colors[Math.floor(Math.random() * colors.length)];
-            return {
-                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-                radius: Math.random() * 200 + 100, color1: colorPair[0], color2: colorPair[1]
-            };
+          const colors = [
+            ["rgba(194, 24, 7, 0.25)", "rgba(255, 87, 34, 0.12)"],
+            ["rgba(255, 140, 0, 0.18)", "rgba(255, 215, 0, 0.09)"],
+            ["rgba(255, 87, 34, 0.22)", "rgba(255, 215, 0, 0.11)"],
+          ];
+          const colorPair = colors[Math.floor(Math.random() * colors.length)];
+          return {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 200 + 100,
+            color1: colorPair[0],
+            color2: colorPair[1],
+          };
         }
-        
-        window.addEventListener('resize', resizeCanvas);
+
+        window.addEventListener("resize", resizeCanvas);
         resizeCanvas();
 
         function animateSpace() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            nebulae.forEach(n => {
-                const gradient = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius);
-                gradient.addColorStop(0, n.color1);
-                gradient.addColorStop(1, 'rgba(0,0,0,0)');
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            });
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            stars.forEach(s => {
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha * Math.abs(Math.sin(Date.now() * 0.0005 + s.y))})`;
-                ctx.fill();
-            });
+          nebulae.forEach((n) => {
+            const gradient = ctx.createRadialGradient(
+              n.x,
+              n.y,
+              0,
+              n.x,
+              n.y,
+              n.radius
+            );
+            gradient.addColorStop(0, n.color1);
+            gradient.addColorStop(1, "rgba(0,0,0,0)");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+          });
 
-            comets.forEach(c => {
-                const tailX = c.x - c.length * Math.cos(c.angle);
-                const tailY = c.y - c.length * Math.sin(c.angle);
-                const gradient = ctx.createLinearGradient(c.x, c.y, tailX, tailY);
-                gradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)');
-                gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                
-                ctx.beginPath(); ctx.moveTo(tailX, tailY); ctx.lineTo(c.x, c.y);
-                ctx.strokeStyle = gradient; ctx.lineWidth = c.radius; ctx.stroke();
-                c.x += c.speed * Math.cos(c.angle); c.y += c.speed * Math.sin(c.angle);
+          stars.forEach((s) => {
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${
+              s.alpha * Math.abs(Math.sin(Date.now() * 0.0005 + s.y))
+            })`;
+            ctx.fill();
+          });
 
-                if (c.x < -c.length || c.x > canvas.width + c.length || c.y < -c.length || c.y > canvas.height + c.length) {
-                    Object.assign(c, createComet());
-                    c.x = Math.random() < 0.5 ? -c.length : canvas.width + c.length;
-                    c.y = Math.random() * canvas.height;
-                }
-            });
+          comets.forEach((c) => {
+            const tailX = c.x - c.length * Math.cos(c.angle);
+            const tailY = c.y - c.length * Math.sin(c.angle);
+            const gradient = ctx.createLinearGradient(c.x, c.y, tailX, tailY);
+            gradient.addColorStop(0, "rgba(255, 255, 255, 0.8)");
+            gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
-            requestAnimationFrame(animateSpace);
+            ctx.beginPath();
+            ctx.moveTo(tailX, tailY);
+            ctx.lineTo(c.x, c.y);
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = c.radius;
+            ctx.stroke();
+            c.x += c.speed * Math.cos(c.angle);
+            c.y += c.speed * Math.sin(c.angle);
+
+            if (
+              c.x < -c.length ||
+              c.x > canvas.width + c.length ||
+              c.y < -c.length ||
+              c.y > canvas.height + c.length
+            ) {
+              Object.assign(c, createComet());
+              c.x = Math.random() < 0.5 ? -c.length : canvas.width + c.length;
+              c.y = Math.random() * canvas.height;
+            }
+          });
+
+          requestAnimationFrame(animateSpace);
         }
         animateSpace();
-        
-        const mobileNav = document.querySelector('.md\\:hidden.fixed.bottom-0');
+
+        const mobileNav = document.querySelector(".md\\:hidden.fixed.bottom-0");
         if (mobileNav) {
-            mobileNav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    const targetId = link.getAttribute('href');
-                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-                });
+          mobileNav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+              const targetId = link.getAttribute("href");
+              document
+                .querySelector(targetId)
+                .scrollIntoView({ behavior: "smooth" });
             });
+          });
         }
-        
-        const animatedSections = document.querySelectorAll('.animated-section');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('is-visible');
+
+        const animatedSections = document.querySelectorAll(".animated-section");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting)
+                entry.target.classList.add("is-visible");
             });
-        }, { threshold: 0.1 });
-        animatedSections.forEach(section => observer.observe(section));
+          },
+          { threshold: 0.1 }
+        );
+        animatedSections.forEach((section) => observer.observe(section));
 
-        const searchInput = document.getElementById('search-input');
-        const searchDropdown = document.getElementById('search-dropdown');
-        const allSections = Array.from(document.querySelectorAll('section[id]'));
-        const searchIndex = allSections.map(s => ({ id: s.id, text: s.innerText.toLowerCase() }));
+        const searchInput = document.getElementById("search-input");
+        const searchDropdown = document.getElementById("search-dropdown");
+        const allSections = Array.from(
+          document.querySelectorAll("section[id]")
+        );
+        const searchIndex = allSections.map((s) => ({
+          id: s.id,
+          text: s.innerText.toLowerCase(),
+        }));
 
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            if (query.length < 2) {
-                searchDropdown.classList.add('hidden');
-                return;
-            }
-            const results = searchIndex.filter(item => item.text.includes(query));
-            searchDropdown.innerHTML = '';
-            if (results.length > 0) {
-                results.slice(0, 5).forEach(result => {
-                    const sectionTitle = document.querySelector(`#${result.id} h3`).innerText;
-                    const item = document.createElement('div');
-                    item.className = 'search-item';
-                    item.innerHTML = `Pergi ke: <strong>${sectionTitle}</strong>`;
-                    item.onclick = () => {
-                        document.getElementById(result.id).scrollIntoView({ behavior: 'smooth' });
-                        searchInput.value = '';
-                        searchDropdown.classList.add('hidden');
-                    };
-                    searchDropdown.appendChild(item);
-                });
-                searchDropdown.classList.remove('hidden');
-            } else {
-                searchDropdown.classList.add('hidden');
-            }
+        searchInput.addEventListener("input", () => {
+          const query = searchInput.value.toLowerCase();
+          if (query.length < 2) {
+            searchDropdown.classList.add("hidden");
+            return;
+          }
+          const results = searchIndex.filter((item) =>
+            item.text.includes(query)
+          );
+          searchDropdown.innerHTML = "";
+          if (results.length > 0) {
+            results.slice(0, 5).forEach((result) => {
+              const sectionTitle = document.querySelector(
+                `#${result.id} h3`
+              ).innerText;
+              const item = document.createElement("div");
+              item.className = "search-item";
+              item.innerHTML = `Pergi ke: <strong>${sectionTitle}</strong>`;
+              item.onclick = () => {
+                document
+                  .getElementById(result.id)
+                  .scrollIntoView({ behavior: "smooth" });
+                searchInput.value = "";
+                searchDropdown.classList.add("hidden");
+              };
+              searchDropdown.appendChild(item);
+            });
+            searchDropdown.classList.remove("hidden");
+          } else {
+            searchDropdown.classList.add("hidden");
+          }
         });
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target)) searchDropdown.classList.add('hidden');
+        document.addEventListener("click", (e) => {
+          if (!searchInput.contains(e.target))
+            searchDropdown.classList.add("hidden");
         });
 
-        const modal = document.getElementById('registration-modal');
-        const openModalButtons = [document.getElementById('daftar-hero-btn'), document.getElementById('daftar-main-btn')];
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        const steps = [document.getElementById('step-1'), document.getElementById('step-2'), document.getElementById('step-3')];
+        const modal = document.getElementById("registration-modal");
+        const openModalButtons = [
+          document.getElementById("daftar-hero-btn"),
+          document.getElementById("daftar-main-btn"),
+        ];
+        const closeModalBtn = document.getElementById("close-modal-btn");
+        const steps = [
+          document.getElementById("step-1"),
+          document.getElementById("step-2"),
+          document.getElementById("step-3"),
+        ];
         let userData = { photo: null };
 
-        const cameraContainer = document.getElementById('camera-container');
-        const cameraFeed = document.getElementById('camera-feed');
-        const photoCanvas = document.getElementById('photo-canvas');
-        const photoPreviewContainer = document.getElementById('photo-preview-container');
-        const photoPreview = document.getElementById('photo-preview');
-        
-        const photoOptions = document.getElementById('photo-options');
-        const retakeOptions = document.getElementById('retake-options');
+        const cameraContainer = document.getElementById("camera-container");
+        const cameraFeed = document.getElementById("camera-feed");
+        const photoCanvas = document.getElementById("photo-canvas");
+        const photoPreviewContainer = document.getElementById(
+          "photo-preview-container"
+        );
+        const photoPreview = document.getElementById("photo-preview");
 
-        const takePhotoBtn = document.getElementById('take-photo-btn');
-        const uploadPhotoBtn = document.getElementById('upload-photo-btn');
-        const photoUploadInput = document.getElementById('photo-upload');
-        const retakePhotoBtn = document.getElementById('retake-photo-btn');
-        const confirmPhotoBtn = document.getElementById('confirm-photo-btn');
+        const photoOptions = document.getElementById("photo-options");
+        const retakeOptions = document.getElementById("retake-options");
+
+        const takePhotoBtn = document.getElementById("take-photo-btn");
+        const uploadPhotoBtn = document.getElementById("upload-photo-btn");
+        const photoUploadInput = document.getElementById("photo-upload");
+        const retakePhotoBtn = document.getElementById("retake-photo-btn");
+        const confirmPhotoBtn = document.getElementById("confirm-photo-btn");
         let stream;
 
-        const showStep = (stepIndex) => steps.forEach((s, i) => s.classList.toggle('hidden', i !== stepIndex));
-        const openModal = () => { modal.classList.remove('hidden'); showStep(0); };
+        const showStep = (stepIndex) =>
+          steps.forEach((s, i) =>
+            s.classList.toggle("hidden", i !== stepIndex)
+          );
+        const openModal = () => {
+          modal.classList.remove("hidden");
+          showStep(0);
+        };
         const closeModal = () => {
-            modal.classList.add('hidden');
-            if (stream) stream.getTracks().forEach(track => track.stop());
-            document.getElementById('form-step-1').reset();
+          modal.classList.add("hidden");
+          if (stream) stream.getTracks().forEach((track) => track.stop());
+          document.getElementById("form-step-1").reset();
         };
 
-        openModalButtons.forEach(btn => btn.addEventListener('click', openModal));
-        closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        openModalButtons.forEach((btn) =>
+          btn.addEventListener("click", openModal)
+        );
+        closeModalBtn.addEventListener("click", closeModal);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
 
         const startCamera = async () => {
-            try {
-                stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                cameraFeed.srcObject = stream;
-                cameraContainer.classList.remove('hidden');
-                photoPreviewContainer.classList.add('hidden');
-                photoOptions.classList.remove('hidden');
-                retakeOptions.classList.add('hidden');
-            } catch (err) {
-                alert('Kamera tidak dapat diakses. Pastikan Anda memberikan izin.');
-                cameraContainer.classList.add('hidden');
-            }
+          try {
+            stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            cameraFeed.srcObject = stream;
+            cameraContainer.classList.remove("hidden");
+            photoPreviewContainer.classList.add("hidden");
+            photoOptions.classList.remove("hidden");
+            retakeOptions.classList.add("hidden");
+          } catch (err) {
+            alert("Kamera tidak dapat diakses. Pastikan Anda memberikan izin.");
+            cameraContainer.classList.add("hidden");
+          }
         };
 
-        document.getElementById('form-step-1').addEventListener('submit', (e) => {
+        document
+          .getElementById("form-step-1")
+          .addEventListener("submit", (e) => {
             e.preventDefault();
             userData = {
-                ...userData,
-                nama: document.getElementById('nama').value,
-                email: document.getElementById('email').value,
-                fakultas: document.getElementById('fakultas').value,
+              ...userData,
+              nama: document.getElementById("nama").value,
+              email: document.getElementById("email").value,
+              fakultas: document.getElementById("fakultas").value,
             };
             showStep(1);
             startCamera();
-        });
-        
-        uploadPhotoBtn.addEventListener('click', () => photoUploadInput.click());
-        
-        photoUploadInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    userData.photo = e.target.result;
-                    photoPreview.src = userData.photo;
-                    photoPreviewContainer.classList.remove('hidden');
-                    if (stream) stream.getTracks().forEach(track => track.stop());
-                    cameraContainer.classList.add('hidden');
-                    photoOptions.classList.add('hidden');
-                    retakeOptions.classList.remove('hidden');
-                };
-                reader.readAsDataURL(file);
-            }
+          });
+
+        uploadPhotoBtn.addEventListener("click", () =>
+          photoUploadInput.click()
+        );
+
+        photoUploadInput.addEventListener("change", (event) => {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              userData.photo = e.target.result;
+              photoPreview.src = userData.photo;
+              photoPreviewContainer.classList.remove("hidden");
+              if (stream) stream.getTracks().forEach((track) => track.stop());
+              cameraContainer.classList.add("hidden");
+              photoOptions.classList.add("hidden");
+              retakeOptions.classList.remove("hidden");
+            };
+            reader.readAsDataURL(file);
+          }
         });
 
-        takePhotoBtn.addEventListener('click', () => {
-            const context = photoCanvas.getContext('2d');
-            photoCanvas.width = cameraFeed.videoWidth;
-            photoCanvas.height = cameraFeed.videoHeight;
-            context.drawImage(cameraFeed, 0, 0);
-            userData.photo = photoCanvas.toDataURL('image/jpeg');
-            photoPreview.src = userData.photo;
-            
-            cameraContainer.classList.add('hidden');
-            photoPreviewContainer.classList.remove('hidden');
-            photoOptions.classList.add('hidden');
-            retakeOptions.classList.remove('hidden');
-            if (stream) stream.getTracks().forEach(track => track.stop());
+        takePhotoBtn.addEventListener("click", () => {
+          const context = photoCanvas.getContext("2d");
+          photoCanvas.width = cameraFeed.videoWidth;
+          photoCanvas.height = cameraFeed.videoHeight;
+          context.drawImage(cameraFeed, 0, 0);
+          userData.photo = photoCanvas.toDataURL("image/jpeg");
+          photoPreview.src = userData.photo;
+
+          cameraContainer.classList.add("hidden");
+          photoPreviewContainer.classList.remove("hidden");
+          photoOptions.classList.add("hidden");
+          retakeOptions.classList.remove("hidden");
+          if (stream) stream.getTracks().forEach((track) => track.stop());
         });
 
-        retakePhotoBtn.addEventListener('click', () => {
-            userData.photo = null;
-            photoUploadInput.value = null; 
-            startCamera();
+        retakePhotoBtn.addEventListener("click", () => {
+          userData.photo = null;
+          photoUploadInput.value = null;
+          startCamera();
         });
-        
-        confirmPhotoBtn.addEventListener('click', () => {
-            showStep(2);
+
+        confirmPhotoBtn.addEventListener("click", () => {
+          showStep(2);
         });
-        
+
         const generateAndDownloadPDF = async () => {
-            if (!confirm("Apakah Anda yakin ingin mengunduh E-Ticket? Pastikan data Anda sudah benar.")) {
-                return;
+          if (
+            !confirm(
+              "Apakah Anda yakin ingin mengunduh E-Ticket? Pastikan data Anda sudah benar."
+            )
+          ) {
+            return;
+          }
+
+          const downloadButton = document.getElementById("final-download-btn");
+          downloadButton.disabled = true;
+          downloadButton.innerText = "Mempersiapkan PDF...";
+
+          try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+              orientation: "landscape",
+              unit: "in",
+              format: [8.5, 2.75],
+            });
+
+            doc.setFont("helvetica", "normal");
+
+            const bgGradient = doc.context2d.createRadialGradient(
+              4.25,
+              2.75,
+              0,
+              4.25,
+              2.75,
+              4.25
+            );
+            bgGradient.addColorStop(0, "#1b2735");
+            bgGradient.addColorStop(1, "#090a0f");
+            doc.context2d.fillStyle = bgGradient;
+            doc.context2d.fillRect(0, 0, 8.5, 2.75);
+
+            doc.setFillColor(255, 255, 255);
+            for (let i = 0; i < 150; i++) {
+              const radius = Math.random() * 0.02;
+              doc.ellipse(
+                Math.random() * 8.5,
+                Math.random() * 2.75,
+                radius,
+                radius,
+                "F"
+              );
             }
 
-            const downloadButton = document.getElementById('final-download-btn');
-            downloadButton.disabled = true;
-            downloadButton.innerText = 'Mempersiapkan PDF...';
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(28);
+            doc.setTextColor("#FFFFFF");
+            doc.text("TEC ITB", 0.5, 0.8);
+            doc.setFontSize(20);
+            doc.text("REGISTRATION TICKET", 0.5, 1.2);
 
-            try {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF({ orientation: 'landscape', unit: 'in', format: [8.5, 2.75] });
-
-                doc.setFont('helvetica', 'normal');
-
-                const bgGradient = doc.context2d.createRadialGradient(4.25, 2.75, 0, 4.25, 2.75, 4.25);
-                bgGradient.addColorStop(0, '#1b2735');
-                bgGradient.addColorStop(1, '#090a0f');
-                doc.context2d.fillStyle = bgGradient;
-                doc.context2d.fillRect(0, 0, 8.5, 2.75);
-
-                doc.setFillColor(255, 255, 255);
-                for(let i=0; i<150; i++) {
-                    const radius = Math.random() * 0.02;
-                    doc.ellipse(Math.random() * 8.5, Math.random() * 2.75, radius, radius, 'F');
-                }
-
-                doc.setFont('helvetica', 'bold');
-                doc.setFontSize(28);
-                doc.setTextColor('#FFFFFF');
-                doc.text('TEC ITB', 0.5, 0.8);
-                doc.setFontSize(20);
-                doc.text('REGISTRATION TICKET', 0.5, 1.2);
-
-                if (userData.photo) {
-                    const photoWidth = 1.5;
-                    const photoHeight = 1.5;
-                    const photoX = 6.5;
-                    const photoY = 0.3;
-                    doc.saveGraphicsState();
-                    doc.roundedRect(photoX, photoY, photoWidth, photoHeight, 0.1, 0.1, 'F');
-                    doc.clip();
-                    doc.addImage(userData.photo, 'JPEG', photoX, photoY, photoWidth, photoHeight);
-                    doc.restoreGraphicsState();
-                }
-
-                const ticketNumber = 'TEC-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-                const qrCanvas = document.createElement('canvas');
-                new QRious({
-                    element: qrCanvas,
-                    value: `Nama: ${userData.nama}\nEmail: ${userData.email}\nTicket: ${ticketNumber}`,
-                    size: 200,
-                    background: '#FFFFFF',
-                    foreground: '#0a0a1a'
-                });
-                const qrImage = qrCanvas.toDataURL('image/png');
-                doc.setFillColor(255, 255, 255);
-                doc.roundedRect(6.65, 1.9, 0.7, 0.7, 0.1, 0.1, 'F');
-                doc.addImage(qrImage, 'PNG', 6.7, 1.95, 0.6, 0.6);
-
-                doc.setFillColor(255, 255, 255);
-                doc.roundedRect(0.5, 1.9, 5.5, 0.7, 0.1, 0.1, 'F');
-
-                doc.setFont('helvetica', 'normal');
-                doc.setFontSize(10);
-                doc.setTextColor(10, 10, 26);
-                doc.text(`Nama: ${userData.nama}`, 0.65, 2.15);
-                doc.text(`Email: ${userData.email}`, 0.65, 2.35);
-                doc.text(`Fakultas/Jurusan: ${userData.fakultas}`, 0.65, 2.55);
-
-                doc.setFont('helvetica', 'bold');
-                doc.setFontSize(8);
-                doc.setTextColor('#FFFFFF');
-                doc.text(ticketNumber, 0.25, 2.5, { angle: -90 });
-
-                doc.save(`E-Ticket-OHU-TEC-${userData.nama.replace(/\s/g, '_')}.pdf`);
-
-            } catch (error) {
-                console.error("Gagal membuat PDF:", error);
-                alert("Maaf, terjadi kesalahan saat membuat E-Ticket. Silakan coba lagi.");
-            } finally {
-                downloadButton.disabled = false;
-                downloadButton.innerText = 'Unduh E-Ticket';
+            if (userData.photo) {
+              const photoWidth = 1.5;
+              const photoHeight = 1.5;
+              const photoX = 6.5;
+              const photoY = 0.3;
+              doc.saveGraphicsState();
+              doc.roundedRect(
+                photoX,
+                photoY,
+                photoWidth,
+                photoHeight,
+                0.1,
+                0.1,
+                "F"
+              );
+              doc.clip();
+              doc.addImage(
+                userData.photo,
+                "JPEG",
+                photoX,
+                photoY,
+                photoWidth,
+                photoHeight
+              );
+              doc.restoreGraphicsState();
             }
+
+            const ticketNumber =
+              "TEC-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+            const qrCanvas = document.createElement("canvas");
+            new QRious({
+              element: qrCanvas,
+              value: `Nama: ${userData.nama}\nEmail: ${userData.email}\nTicket: ${ticketNumber}`,
+              size: 200,
+              background: "#FFFFFF",
+              foreground: "#0a0a1a",
+            });
+            const qrImage = qrCanvas.toDataURL("image/png");
+            doc.setFillColor(255, 255, 255);
+            doc.roundedRect(6.65, 1.9, 0.7, 0.7, 0.1, 0.1, "F");
+            doc.addImage(qrImage, "PNG", 6.7, 1.95, 0.6, 0.6);
+
+            doc.setFillColor(255, 255, 255);
+            doc.roundedRect(0.5, 1.9, 5.5, 0.7, 0.1, 0.1, "F");
+
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(10);
+            doc.setTextColor(10, 10, 26);
+            doc.text(`Nama: ${userData.nama}`, 0.65, 2.15);
+            doc.text(`Email: ${userData.email}`, 0.65, 2.35);
+            doc.text(`Fakultas/Jurusan: ${userData.fakultas}`, 0.65, 2.55);
+
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(8);
+            doc.setTextColor("#FFFFFF");
+            doc.text(ticketNumber, 0.25, 2.5, { angle: -90 });
+
+            doc.save(
+              `E-Ticket-OHU-TEC-${userData.nama.replace(/\s/g, "_")}.pdf`
+            );
+          } catch (error) {
+            console.error("Gagal membuat PDF:", error);
+            alert(
+              "Maaf, terjadi kesalahan saat membuat E-Ticket. Silakan coba lagi."
+            );
+          } finally {
+            downloadButton.disabled = false;
+            downloadButton.innerText = "Unduh E-Ticket";
+          }
         };
-        
-        document.getElementById('final-download-btn').addEventListener('click', generateAndDownloadPDF);
-        document.getElementById('payment-link-btn').addEventListener('click', () => {
-            setTimeout(closeModal, 500);
-        });
 
-        const chatbotToggle = document.getElementById('chatbot-toggle');
-        const chatbotContainer = document.getElementById('chatbot-container');
-        const chatbotHeader = document.getElementById('chatbot-header');
-        const closeChatbotBtn = document.getElementById('close-chatbot');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-        const sendBtn = document.getElementById('send-btn');
-        const quickRepliesContainer = document.getElementById('quick-replies');
-        const chatBubble = document.getElementById('chat-bubble');
-        const closeBubbleBtn = document.getElementById('close-bubble-btn');
+        document
+          .getElementById("final-download-btn")
+          .addEventListener("click", generateAndDownloadPDF);
+        document
+          .getElementById("payment-link-btn")
+          .addEventListener("click", () => {
+            setTimeout(closeModal, 500);
+          });
+
+        const chatbotToggle = document.getElementById("chatbot-toggle");
+        const chatbotContainer = document.getElementById("chatbot-container");
+        const chatbotHeader = document.getElementById("chatbot-header");
+        const closeChatbotBtn = document.getElementById("close-chatbot");
+        const chatMessages = document.getElementById("chat-messages");
+        const chatInput = document.getElementById("chat-input");
+        const sendBtn = document.getElementById("send-btn");
+        const quickRepliesContainer = document.getElementById("quick-replies");
+        const chatBubble = document.getElementById("chat-bubble");
+        const closeBubbleBtn = document.getElementById("close-bubble-btn");
 
         const knowledgeBase = {
-            'salam': { keywords: ['halo', 'hai', 'pagi', 'siang', 'sore', 'malam', 'hello', 'hi'], answer: "Halo! 👋 Selamat datang di TEC ITB. Saya asisten TEChat yang siap membantu. Ada yang ingin kamu ketahui?", replies: ['Apa itu TEC?', 'Apa keuntungan bergabung?', 'Bagaimana cara daftar?', 'Apa saja programnya?'] },
-            'tec_internship': { keywords: ['TECInternship', 'TEC Internship', 'tecinternship', 'tec internship'], answer: "TEC Internship adalah sebuah fase pelatihan untuk menjadi anggota TEC ITB. TEC Internship merupakan proses di mana setiap individu yang mendaftar menjadi anggota TEC ITB menjalankan pendidikan awal mengenai dunia bisnis dan menerima ilmu-ilmu dari narasumber berpengalaman.", replies: ['Mau info lagi?', 'Bagaimana cara daftar?'] },
-            'tentang_tec': { keywords: ['apa itu tec', 'tentang tec', 'tec itu apa', 'jelaskan tec'], answer: "TEC (Techno Entrepreneur Club) ITB adalah unit kegiatan mahasiswa yang menjadi wadah bagi para inovator dan calon wirausahawan di ITB untuk belajar, berjejaring, dan merealisasikan ide bisnis berbasis teknologi. 🚀", replies: ['Ceritakan sejarahnya', 'Apa keuntungan bergabung?', 'Apa saja divisinya?'] },
-            'sejarah': { keywords: ['sejarah', 'didirikan', 'kapan tec', 'history', 'founded', 'e-club'], answer: "TEC ITB didirikan pada tahun 2008 oleh 6 orang pemrakarsanya. Dalam perkembangannya, TEC ITB telah menghasilkan individu-individu yang sukses dan berprestasi, baik dalam perlombaan, maupun bisnis. Beberapa di antaranya adalah Ahmad Dzaki (Founder of Bukalapak & Founder of TEC ITB) dan Hafizh Ihsanudin (Founder of Crisbar). Selain itu, terdapat anggota TEC ITB yang saat ini sedang mengembangkan bisnisnya di berbagai bidang, seperti Jessica Stevanie (Founder of Jepit Kue), Ariel Attalla (Founder of Kyubii), Pieter Jose (Founder of Saejiva), dan Muhammad Zidni Alkindi (Founder of Teman Belajar).", replies: ['Siapa pendirinya?', 'Apa visi TEC?', 'Lanjut ke program'] },
-            'pendiri': { keywords: ['pendiri', 'founder', 'achmad zaky', 'bukalapak'], answer: "Salah satu inisiator awal TEC adalah Achmad Zaky, yang kemudian mendirikan Bukalapak. Keterlibatan beliau menjadi fondasi kuat bagi perkembangan kami. Keren kan? ✨", replies: ['Hebat! Apa filosofi TEC?', 'Ceritakan tentang alumni lain'] },
-            'keuntungan': { keywords: ['keuntungan', 'benefit', 'kenapa harus join', 'manfaat', 'mengapa gabung'], answer: "Bergabung dengan TEC memberikan banyak keuntungan! 🎉 Kamu akan mendapatkan:\n• **Jaringan Luas:** Terhubung dengan mahasiswa, alumni, mentor, dan investor.\n• **Pengembangan Skill:** Belajar bisnis dari nol lewat program dan workshop.\n• **Portofolio Nyata:** Kesempatan membangun startup sendiri lewat IncubaTEC.", replies: ['Bagaimana cara daftar?', 'Jelaskan tentang Tech Companion', 'Bagaimana jaringan alumninya?'] },
-            'pendaftaran': { keywords: ['daftar', 'join', 'rekrutmen', 'syarat', 'gabung', 'masuk'], answer: "Tentu! Langkah pertama untuk bergabung adalah dengan mendaftar di Open House Unit (OHU) ini. 📝 Syarat utamanya adalah kamu mahasiswa aktif ITB. Setelah OHU, akan ada proses rekrutmen selanjutnya. Jangan sampai ketinggalan ya!", replies: ['Kapan pendaftaran ditutup?', 'Apa saja divisinya?', 'Saya mau daftar sekarang!'] },
-            'divisi': { keywords: ['divisi', 'struktur', 'bidang', 'departemen'], answer: "Struktur inti kami sangat dinamis! Beberapa di antaranya adalah:\n• **Academy:** Pusat pembelajaran & pengembangan skill.\n• **TEC Corp:** Wadah untuk pengalaman bisnis praktis.\n• **TECBox:** Inkubator startup internal kami.\nSelain itu ada juga divisi pendukung seperti HR, PR, dan lainnya!", replies: ['Jelaskan tentang IncubaTEC', 'Apa budaya kerja di TEC?', 'Programnya apa saja?'] },
-            'program_umum': { keywords: ['program', 'kegiatan', 'activities'], answer: "Kami punya banyak program seru! Yang utama ada IncubaTEC untuk bikin startup, Tech Companion untuk mentorship, Company Visit ke perusahaan keren, TECFest yang berisi lomba BCC dan BPC, TEC Internship, dan Studi Banding. Mau tau lebih detail yang mana nih? 🤔", replies: ['Jelaskan IncubaTEC', 'Jelaskan Tech Companion', 'TECFEST', 'Studi Banding', 'Company Visit', 'TECInternship'] },
-            'info': { keywords: ['mau info', 'info'], answer: "Apa program yang ingin ditanyakan lagi?🤔", replies: ['IncubaTEC', 'Tech Companion', 'TECFEST', 'Studi Banding', 'Company Visit', 'TECInternship'] },
-            'incubatec': { keywords: ['incubatec', 'inkubator', 'startup'], answer: "Business Incubator merupakan program TEC yang menginkubasi ide-ide bisnis dari anggota TEC ITB. Program ini memiliki fokus untuk menjadikan para anggota TEC ITB pebisnis muda. Business Incubator memberikan pelatihan berupa mentoring dengan para pebisnis muda, presentasi ide, sampai menyediakan wadah untuk anggota TEC ITB berinteraksi langsung dengan investor. Business Incubator tahun 2024 telah berhasil berkolaborasi dengan Pertamina Foundation dan HIPMI  dalam membentuk pembisnis masa depan.", replies: ['Ada contoh startup dari TEC?', 'Bagaimana cara ikut IncubaTEC?', 'Apa itu Tech Companion?'] },
-            'tech_companion': { keywords: ['mentorship', 'mentor', 'tech companion', 'bimbingan'], answer: "Competition Mentoring merupakan program TEC yang memfasilitasi para anggotanya dalam mempersiapkan perlombaan Business Case dan Business Plan dengan para mentor berpengalaman yang telah memenangkan berbagai perlombaan terkait.", replies: ['Siapa saja contoh mentornya?', 'Apa keuntungan bergabung?', 'Program lain?'] },
-            'tecfest': { keywords: ['tecfest', 'acara', 'event', 'kompetisi', 'lomba', 'competition'], answer: "TECFEST adalah acara tahunan termegah kami, sebuah platform kewirausahaan berskala internasional. 🏆 Di dalamnya ada dua kompetisi utama: Business Plan Competition (BPC)) dan Business Case Competition (BCC).", replies: ['Apa itu BPC?', 'Apa itu BCC?'] },
-            'BPC': { keywords: ['BPC', 'business plan', 'sharktec'], answer: "BPC adalah kompetisi rencana bisnis internasional. Fitur uniknya adalah tahap 'SharkTEC' 🦈, di mana finalis melakukan pitching langsung di hadapan investor untuk peluang pendanaan nyata. Siap-siap dapat funding!", replies: ['Ceritakan tentang BCC', 'Prestasi TEC apa saja?'] },
-            'BCC': { keywords: ['BCC', 'case competition', 'studi kasus'], answer: "BCC adalah kompetisi studi kasus bisnis internasional. Peserta ditantang memecahkan masalah bisnis nyata dari perusahaan mitra ternama. Asah skill problem-solving kamu di sini! 🧠", replies: ['Ceritakan tentang BPC', 'Prestasi TEC apa saja?'] },
-            'alumni': { keywords: ['alumni', 'jaringan', 'networking'], answer: "Jaringan alumni TEC sangat kuat dan tersebar luas! 🌐 Banyak dari mereka yang kini menjadi founder startup, bekerja di perusahaan teknologi ternama (unicorn & decacorn), atau menjadi venture capitalist. Koneksi tak ternilai!", replies: ['Siapa contoh alumni sukses?', 'Apa keuntungan bergabung?'] },
-            'budaya': { keywords: ['budaya', 'kultur', 'suasana', 'lingkungan'], answer: "Budaya di TEC itu kolaboratif dan inovatif! Kami percaya pada 'work hard, play hard'. Suasananya sangat mendukung untuk berdiskusi, bertukar ide gila, dan belajar bersama. Dijamin seru dan suportif! 🤗", replies: ['Apa saja divisinya?', 'Bagaimana cara bergabung?'] },
-            'terimakasih': { keywords: ['terima kasih', 'makasih', 'thank you', 'thanks', 'oke', 'sip'], answer: "Sama-sama! Senang bisa membantu. Jika ada pertanyaan lain, jangan ragu untuk bertanya lagi ya. 😊", replies: ['Apa itu TEC?', 'Program apa saja?', 'Bagaimana cara daftar?'] },
-            'studi_banding': { keywords: ['studi banding', 'studi', 'banding'], answer:"Studi Banding merupakan program yang mempertemukan TEC ITB dengan unit bisnis lain dari berbagai universitas di seluruh Indonesia. Melalui studi banding, TEC ITB berkesempatan untuk bertukar pikiran, mencari referensi untuk pengembangan, bahkan menjadi inspirasi bagi perkembangan unit-unit lain di luar sana. Selain itu, peserta studi banding dapat memperoleh relasi dengan mahasiswa di seluruh Indonesia. Sejauh ini, TEC ITB telah melakukan studi banding dengan HIPMI UNPAD, IMK “Artha” ITB dan WEBS UNAIR.", replies: ['Mau info?', 'Bagaimana cara daftar?'] },
-            'company_visit': { keywords: ['company visit', 'kunjungan perusahaan', 'kunjungan'], answer: "Company Visit merupakan program khusus bagi para anggota TEC ITB. Anggota-anggota TEC ITB memiliki kesempatan untuk melakukan company visit ke perusahaan-perusahaan ternama di Indonesia. Saat ini, TEC ITB telah berhasil menjalin kerjasama company visit dengan Evermos, Microsoft, and Blibli.", replies: ['Mau info lagi?', 'Bagaimana cara daftar?'] },
-            'default': { keywords: [], answer: "Maaf, saya belum mengerti pertanyaan itu. 😕 Coba tanyakan tentang keuntungan bergabung, program kerja, atau cara mendaftar.", replies: ['Apa keuntungan bergabung?', 'Program apa saja?', 'Bagaimana cara daftar?'] }
+          salam: {
+            keywords: [
+              "halo",
+              "hai",
+              "pagi",
+              "siang",
+              "sore",
+              "malam",
+              "hello",
+              "hi",
+            ],
+            answer:
+              "Halo! 👋 Selamat datang di TEC ITB. Saya asisten TEChat yang siap membantu. Ada yang ingin kamu ketahui?",
+            replies: [
+              "Apa itu TEC?",
+              "Apa keuntungan bergabung?",
+              "Bagaimana cara daftar?",
+              "Apa saja programnya?",
+            ],
+          },
+          tec_internship: {
+            keywords: [
+              "TECInternship",
+              "TEC Internship",
+              "tecinternship",
+              "tec internship",
+            ],
+            answer:
+              "TEC Internship adalah sebuah fase pelatihan untuk menjadi anggota TEC ITB. TEC Internship merupakan proses di mana setiap individu yang mendaftar menjadi anggota TEC ITB menjalankan pendidikan awal mengenai dunia bisnis dan menerima ilmu-ilmu dari narasumber berpengalaman.",
+            replies: ["Mau info lagi?", "Bagaimana cara daftar?"],
+          },
+          tentang_tec: {
+            keywords: [
+              "apa itu tec",
+              "tentang tec",
+              "tec itu apa",
+              "jelaskan tec",
+            ],
+            answer:
+              "TEC (Techno Entrepreneur Club) ITB adalah unit kegiatan mahasiswa yang menjadi wadah bagi para inovator dan calon wirausahawan di ITB untuk belajar, berjejaring, dan merealisasikan ide bisnis berbasis teknologi. 🚀",
+            replies: [
+              "Ceritakan sejarahnya",
+              "Apa keuntungan bergabung?",
+              "Apa saja divisinya?",
+            ],
+          },
+          sejarah: {
+            keywords: [
+              "sejarah",
+              "didirikan",
+              "kapan tec",
+              "history",
+              "founded",
+              "e-club",
+            ],
+            answer:
+              "TEC ITB didirikan pada tahun 2008 oleh 6 orang pemrakarsanya. Dalam perkembangannya, TEC ITB telah menghasilkan individu-individu yang sukses dan berprestasi, baik dalam perlombaan, maupun bisnis. Beberapa di antaranya adalah Ahmad Dzaki (Founder of Bukalapak & Founder of TEC ITB) dan Hafizh Ihsanudin (Founder of Crisbar). Selain itu, terdapat anggota TEC ITB yang saat ini sedang mengembangkan bisnisnya di berbagai bidang, seperti Jessica Stevanie (Founder of Jepit Kue), Ariel Attalla (Founder of Kyubii), Pieter Jose (Founder of Saejiva), dan Muhammad Zidni Alkindi (Founder of Teman Belajar).",
+            replies: [
+              "Siapa pendirinya?",
+              "Apa visi TEC?",
+              "Lanjut ke program",
+            ],
+          },
+          pendiri: {
+            keywords: ["pendiri", "founder", "achmad zaky", "bukalapak"],
+            answer:
+              "Salah satu inisiator awal TEC adalah Achmad Zaky, yang kemudian mendirikan Bukalapak. Keterlibatan beliau menjadi fondasi kuat bagi perkembangan kami. Keren kan? ✨",
+            replies: [
+              "Hebat! Apa filosofi TEC?",
+              "Ceritakan tentang alumni lain",
+            ],
+          },
+          keuntungan: {
+            keywords: [
+              "keuntungan",
+              "benefit",
+              "kenapa harus join",
+              "manfaat",
+              "mengapa gabung",
+            ],
+            answer:
+              "Bergabung dengan TEC memberikan banyak keuntungan! 🎉 Kamu akan mendapatkan:\n• **Jaringan Luas:** Terhubung dengan mahasiswa, alumni, mentor, dan investor.\n• **Pengembangan Skill:** Belajar bisnis dari nol lewat program dan workshop.\n• **Portofolio Nyata:** Kesempatan membangun startup sendiri lewat IncubaTEC.",
+            replies: [
+              "Bagaimana cara daftar?",
+              "Jelaskan tentang Tech Companion",
+              "Bagaimana jaringan alumninya?",
+            ],
+          },
+          pendaftaran: {
+            keywords: [
+              "daftar",
+              "join",
+              "rekrutmen",
+              "syarat",
+              "gabung",
+              "masuk",
+            ],
+            answer:
+              "Tentu! Langkah pertama untuk bergabung adalah dengan mendaftar di Open House Unit (OHU) ini. 📝 Syarat utamanya adalah kamu mahasiswa aktif ITB. Setelah OHU, akan ada proses rekrutmen selanjutnya. Jangan sampai ketinggalan ya!",
+            replies: [
+              "Kapan pendaftaran ditutup?",
+              "Apa saja divisinya?",
+              "Saya mau daftar sekarang!",
+            ],
+          },
+          divisi: {
+            keywords: ["divisi", "struktur", "bidang", "departemen"],
+            answer:
+              "Struktur inti kami sangat dinamis! Beberapa di antaranya adalah:\n• **Academy:** Pusat pembelajaran & pengembangan skill.\n• **TEC Corp:** Wadah untuk pengalaman bisnis praktis.\n• **TECBox:** Inkubator startup internal kami.\nSelain itu ada juga divisi pendukung seperti HR, PR, dan lainnya!",
+            replies: [
+              "Jelaskan tentang IncubaTEC",
+              "Apa budaya kerja di TEC?",
+              "Programnya apa saja?",
+            ],
+          },
+          program_umum: {
+            keywords: ["program", "kegiatan", "activities"],
+            answer:
+              "Kami punya banyak program seru! Yang utama ada IncubaTEC untuk bikin startup, Tech Companion untuk mentorship, Company Visit ke perusahaan keren, TECFest yang berisi lomba BCC dan BPC, TEC Internship, dan Studi Banding. Mau tau lebih detail yang mana nih? 🤔",
+            replies: [
+              "Jelaskan IncubaTEC",
+              "Jelaskan Tech Companion",
+              "TECFEST",
+              "Studi Banding",
+              "Company Visit",
+              "TECInternship",
+            ],
+          },
+          info: {
+            keywords: ["mau info", "info"],
+            answer: "Apa program yang ingin ditanyakan lagi?🤔",
+            replies: [
+              "IncubaTEC",
+              "Tech Companion",
+              "TECFEST",
+              "Studi Banding",
+              "Company Visit",
+              "TECInternship",
+            ],
+          },
+          incubatec: {
+            keywords: ["incubatec", "inkubator", "startup"],
+            answer:
+              "Business Incubator merupakan program TEC yang menginkubasi ide-ide bisnis dari anggota TEC ITB. Program ini memiliki fokus untuk menjadikan para anggota TEC ITB pebisnis muda. Business Incubator memberikan pelatihan berupa mentoring dengan para pebisnis muda, presentasi ide, sampai menyediakan wadah untuk anggota TEC ITB berinteraksi langsung dengan investor. Business Incubator tahun 2024 telah berhasil berkolaborasi dengan Pertamina Foundation dan HIPMI  dalam membentuk pembisnis masa depan.",
+            replies: [
+              "Ada contoh startup dari TEC?",
+              "Bagaimana cara ikut IncubaTEC?",
+              "Apa itu Tech Companion?",
+            ],
+          },
+          tech_companion: {
+            keywords: ["mentorship", "mentor", "tech companion", "bimbingan"],
+            answer:
+              "Competition Mentoring merupakan program TEC yang memfasilitasi para anggotanya dalam mempersiapkan perlombaan Business Case dan Business Plan dengan para mentor berpengalaman yang telah memenangkan berbagai perlombaan terkait.",
+            replies: [
+              "Siapa saja contoh mentornya?",
+              "Apa keuntungan bergabung?",
+              "Program lain?",
+            ],
+          },
+          tecfest: {
+            keywords: [
+              "tecfest",
+              "acara",
+              "event",
+              "kompetisi",
+              "lomba",
+              "competition",
+            ],
+            answer:
+              "TECFEST adalah acara tahunan termegah kami, sebuah platform kewirausahaan berskala internasional. 🏆 Di dalamnya ada dua kompetisi utama: Business Plan Competition (BPC)) dan Business Case Competition (BCC).",
+            replies: ["Apa itu BPC?", "Apa itu BCC?"],
+          },
+          BPC: {
+            keywords: ["BPC", "business plan", "sharktec"],
+            answer:
+              "BPC adalah kompetisi rencana bisnis internasional. Fitur uniknya adalah tahap 'SharkTEC' 🦈, di mana finalis melakukan pitching langsung di hadapan investor untuk peluang pendanaan nyata. Siap-siap dapat funding!",
+            replies: ["Ceritakan tentang BCC", "Prestasi TEC apa saja?"],
+          },
+          BCC: {
+            keywords: ["BCC", "case competition", "studi kasus"],
+            answer:
+              "BCC adalah kompetisi studi kasus bisnis internasional. Peserta ditantang memecahkan masalah bisnis nyata dari perusahaan mitra ternama. Asah skill problem-solving kamu di sini! 🧠",
+            replies: ["Ceritakan tentang BPC", "Prestasi TEC apa saja?"],
+          },
+          alumni: {
+            keywords: ["alumni", "jaringan", "networking"],
+            answer:
+              "Jaringan alumni TEC sangat kuat dan tersebar luas! 🌐 Banyak dari mereka yang kini menjadi founder startup, bekerja di perusahaan teknologi ternama (unicorn & decacorn), atau menjadi venture capitalist. Koneksi tak ternilai!",
+            replies: [
+              "Siapa contoh alumni sukses?",
+              "Apa keuntungan bergabung?",
+            ],
+          },
+          budaya: {
+            keywords: ["budaya", "kultur", "suasana", "lingkungan"],
+            answer:
+              "Budaya di TEC itu kolaboratif dan inovatif! Kami percaya pada 'work hard, play hard'. Suasananya sangat mendukung untuk berdiskusi, bertukar ide gila, dan belajar bersama. Dijamin seru dan suportif! 🤗",
+            replies: ["Apa saja divisinya?", "Bagaimana cara bergabung?"],
+          },
+          terimakasih: {
+            keywords: [
+              "terima kasih",
+              "makasih",
+              "thank you",
+              "thanks",
+              "oke",
+              "sip",
+            ],
+            answer:
+              "Sama-sama! Senang bisa membantu. Jika ada pertanyaan lain, jangan ragu untuk bertanya lagi ya. 😊",
+            replies: [
+              "Apa itu TEC?",
+              "Program apa saja?",
+              "Bagaimana cara daftar?",
+            ],
+          },
+          studi_banding: {
+            keywords: ["studi banding", "studi", "banding"],
+            answer:
+              "Studi Banding merupakan program yang mempertemukan TEC ITB dengan unit bisnis lain dari berbagai universitas di seluruh Indonesia. Melalui studi banding, TEC ITB berkesempatan untuk bertukar pikiran, mencari referensi untuk pengembangan, bahkan menjadi inspirasi bagi perkembangan unit-unit lain di luar sana. Selain itu, peserta studi banding dapat memperoleh relasi dengan mahasiswa di seluruh Indonesia. Sejauh ini, TEC ITB telah melakukan studi banding dengan HIPMI UNPAD, IMK “Artha” ITB dan WEBS UNAIR.",
+            replies: ["Mau info?", "Bagaimana cara daftar?"],
+          },
+          company_visit: {
+            keywords: ["company visit", "kunjungan perusahaan", "kunjungan"],
+            answer:
+              "Company Visit merupakan program khusus bagi para anggota TEC ITB. Anggota-anggota TEC ITB memiliki kesempatan untuk melakukan company visit ke perusahaan-perusahaan ternama di Indonesia. Saat ini, TEC ITB telah berhasil menjalin kerjasama company visit dengan Evermos, Microsoft, and Blibli.",
+            replies: ["Mau info lagi?", "Bagaimana cara daftar?"],
+          },
+          default: {
+            keywords: [],
+            answer:
+              "Maaf, saya belum mengerti pertanyaan itu. 😕 Coba tanyakan tentang keuntungan bergabung, program kerja, atau cara mendaftar.",
+            replies: [
+              "Apa keuntungan bergabung?",
+              "Program apa saja?",
+              "Bagaimana cara daftar?",
+            ],
+          },
         };
 
         const findAnswer = (query) => {
-            const lowerCaseQuery = query.toLowerCase();
-            for (const key in knowledgeBase) {
-                if (knowledgeBase[key].keywords.some(keyword => lowerCaseQuery.includes(keyword))) {
-                    return knowledgeBase[key];
-                }
+          const lowerCaseQuery = query.toLowerCase();
+          for (const key in knowledgeBase) {
+            if (
+              knowledgeBase[key].keywords.some((keyword) =>
+                lowerCaseQuery.includes(keyword)
+              )
+            ) {
+              return knowledgeBase[key];
             }
-            return knowledgeBase['default'];
+          }
+          return knowledgeBase["default"];
         };
         const addMessage = (message, sender, replies = []) => {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `chat-message ${sender}-message`;
-            messageDiv.innerHTML = message.replace(/\n/g, '<br>');
-            chatMessages.appendChild(messageDiv);
-            if (sender === 'bot') updateQuickReplies(replies);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+          const messageDiv = document.createElement("div");
+          messageDiv.className = `chat-message ${sender}-message`;
+          messageDiv.innerHTML = message.replace(/\n/g, "<br>");
+          chatMessages.appendChild(messageDiv);
+          if (sender === "bot") updateQuickReplies(replies);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
         };
         const updateQuickReplies = (replies) => {
-            quickRepliesContainer.innerHTML = '';
-            if (replies && replies.length > 0) {
-                replies.forEach(replyText => {
-                    const button = document.createElement('button');
-                    button.className = 'quick-reply-btn';
-                    button.textContent = replyText;
-                    button.onclick = () => {
-                        if (replyText.toLowerCase().includes('daftar sekarang')) {
-                            openModal();
-                            closeChatbot();
-                        } else {
-                            chatInput.value = replyText;
-                            handleSendMessage();
-                        }
-                    };
-                    quickRepliesContainer.appendChild(button);
-                });
-            }
+          quickRepliesContainer.innerHTML = "";
+          if (replies && replies.length > 0) {
+            replies.forEach((replyText) => {
+              const button = document.createElement("button");
+              button.className = "quick-reply-btn";
+              button.textContent = replyText;
+              button.onclick = () => {
+                if (replyText.toLowerCase().includes("daftar sekarang")) {
+                  openModal();
+                  closeChatbot();
+                } else {
+                  chatInput.value = replyText;
+                  handleSendMessage();
+                }
+              };
+              quickRepliesContainer.appendChild(button);
+            });
+          }
         };
         const handleSendMessage = () => {
-            const query = chatInput.value.trim();
-            if (query === '') return;
-            addMessage(query, 'user');
-            quickRepliesContainer.innerHTML = '';
-            chatInput.value = '';
-            setTimeout(() => {
-                const response = findAnswer(query);
-                addMessage(response.answer, 'bot', response.replies);
-            }, 500);
+          const query = chatInput.value.trim();
+          if (query === "") return;
+          addMessage(query, "user");
+          quickRepliesContainer.innerHTML = "";
+          chatInput.value = "";
+          setTimeout(() => {
+            const response = findAnswer(query);
+            addMessage(response.answer, "bot", response.replies);
+          }, 500);
         };
         const openChatbot = () => {
-            chatbotContainer.classList.add('active');
-            chatBubble.style.opacity = '0';
-            chatBubble.style.transform = 'scale(0)';
+          chatbotContainer.classList.add("active");
+          chatBubble.style.opacity = "0";
+          chatBubble.style.transform = "scale(0)";
         };
         const closeChatbot = () => {
-            chatbotContainer.classList.remove('active');
-            if (sessionStorage.getItem('bubbleClosed') !== 'true') {
-                chatBubble.style.opacity = '1';
-                chatBubble.style.transform = 'scale(1)';
-            }
+          chatbotContainer.classList.remove("active");
+          if (sessionStorage.getItem("bubbleClosed") !== "true") {
+            chatBubble.style.opacity = "1";
+            chatBubble.style.transform = "scale(1)";
+          }
         };
-        chatbotToggle.addEventListener('click', () => chatbotContainer.classList.contains('active') ? closeChatbot() : openChatbot());
-        chatBubble.addEventListener('click', openChatbot);
-        closeChatbotBtn.addEventListener('click', closeChatbot);
-        closeBubbleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            chatBubble.style.opacity = '0';
-            chatBubble.style.transform = 'scale(0)';
-            sessionStorage.setItem('bubbleClosed', 'true');
+        chatbotToggle.addEventListener("click", () =>
+          chatbotContainer.classList.contains("active")
+            ? closeChatbot()
+            : openChatbot()
+        );
+        chatBubble.addEventListener("click", openChatbot);
+        closeChatbotBtn.addEventListener("click", closeChatbot);
+        closeBubbleBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          chatBubble.style.opacity = "0";
+          chatBubble.style.transform = "scale(0)";
+          sessionStorage.setItem("bubbleClosed", "true");
         });
-        sendBtn.addEventListener('click', handleSendMessage);
-        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendMessage(); });
-        
+        sendBtn.addEventListener("click", handleSendMessage);
+        chatInput.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") handleSendMessage();
+        });
+
         setTimeout(() => {
-            if (chatMessages.children.length === 0) {
-                const initialGreeting = knowledgeBase['salam'];
-                addMessage(initialGreeting.answer, 'bot', initialGreeting.replies);
-            }
+          if (chatMessages.children.length === 0) {
+            const initialGreeting = knowledgeBase["salam"];
+            addMessage(initialGreeting.answer, "bot", initialGreeting.replies);
+          }
         }, 1000);
 
-        let isDragging = false, offsetX, offsetY;
-        chatbotHeader.addEventListener('mousedown', (e) => { isDragging = true; offsetX = e.clientX - chatbotContainer.offsetLeft; offsetY = e.clientY - chatbotContainer.offsetTop; chatbotContainer.style.transition = 'none'; });
-        document.addEventListener('mousemove', (e) => { if (isDragging) { const x = e.clientX - offsetX; const y = e.clientY - offsetY; const maxX = window.innerWidth - chatbotContainer.offsetWidth; const maxY = window.innerHeight - chatbotContainer.offsetHeight; chatbotContainer.style.left = `${Math.max(0, Math.min(x, maxX))}px`; chatbotContainer.style.top = `${Math.max(0, Math.min(y, maxY))}px`; chatbotContainer.style.right = 'auto'; chatbotContainer.style.bottom = 'auto'; } });
-        document.addEventListener('mouseup', () => { isDragging = false; chatbotContainer.style.transition = 'transform 0.3s ease-in-out'; });
-    });
+        let isDragging = false,
+          offsetX,
+          offsetY;
+        chatbotHeader.addEventListener("mousedown", (e) => {
+          isDragging = true;
+          offsetX = e.clientX - chatbotContainer.offsetLeft;
+          offsetY = e.clientY - chatbotContainer.offsetTop;
+          chatbotContainer.style.transition = "none";
+        });
+        document.addEventListener("mousemove", (e) => {
+          if (isDragging) {
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+            const maxX = window.innerWidth - chatbotContainer.offsetWidth;
+            const maxY = window.innerHeight - chatbotContainer.offsetHeight;
+            chatbotContainer.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+            chatbotContainer.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+            chatbotContainer.style.right = "auto";
+            chatbotContainer.style.bottom = "auto";
+          }
+        });
+        document.addEventListener("mouseup", () => {
+          isDragging = false;
+          chatbotContainer.style.transition = "transform 0.3s ease-in-out";
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
