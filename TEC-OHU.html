@@ -33,12 +33,12 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .btn-primary {
-            background: linear-gradient(90deg, #4f46e5, #c026d3);
+            background: linear-gradient(90deg, #b23e30, #c9b64b);
             transition: all 0.3s ease;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(192, 38, 211, 0.3);
+            box-shadow: 0 10px 20px rgba(239, 195, 100, 0.3);
         }
         
         #navbar-container {
@@ -109,7 +109,7 @@
             transform: scale(0); transform-origin: bottom right; transition: transform 0.3s ease-in-out;
             z-index: 99; resize: both; border: 2px solid transparent;
         }
-        #chatbot-container:active, #chatbot-container:focus-within { border-color: #8b5cf6; }
+        #chatbot-container:active, #chatbot-container:focus-within { border-color: #f6c05c; }
         #chatbot-container.active { transform: scale(1); }
         #chatbot-header { cursor: move; }
         .chat-message {
@@ -117,7 +117,7 @@
             max-width: 85%; line-height: 1.5; word-wrap: break-word;
         }
         .user-message {
-            background-color: #4f46e5; color: white; align-self: flex-end;
+            background-color: #ec7137; color: white; align-self: flex-end;
             border-bottom-right-radius: 0.25rem;
         }
         .bot-message {
@@ -136,7 +136,8 @@
         .quick-reply-btn:hover { background-color: #6b7280; }
         #chat-messages::-webkit-scrollbar { width: 6px; }
         #chat-messages::-webkit-scrollbar-track { background: transparent; }
-        #chat-messages::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 3px;}
+    #chat-messages::-webkit-scrollbar-thumb { background: #ca8649; border-radius: 3px;}
+    #chat-messages::-webkit-scrollbar-thumb { background: #f6ad47; border-radius: 3px;}
 
         #search-container {
             position: fixed;
@@ -160,8 +161,8 @@
             transition: all 0.3s ease;
         }
         #search-input:focus {
-            box-shadow: 0 0 20px rgba(192, 38, 211, 0.5);
-            border-color: rgba(192, 38, 211, 0.7);
+            box-shadow: 0 0 20px rgba(211, 96, 38, 0.5);
+            border-color: rgba(211, 147, 38, 0.7);
         }
         #search-dropdown {
             position: absolute;
@@ -185,7 +186,7 @@
             background-color: rgba(79, 70, 229, 0.5);
         }
         .search-item strong {
-            color: #c084fc;
+            color: #cd7e7e;
         }
     </style>
 </head>
@@ -232,7 +233,7 @@
             <h2 class="text-4xl md:text-7xl font-extrabold text-white leading-tight mb-4 animate-fade-in-up" style="animation-delay: 0.2s;">
                 Techno Entrepreneur Club
             </h2>
-            <h3 class="text-3xl md:text-5xl font-bold text-purple-300 mb-6 animate-fade-in-up" style="animation-delay: 0.4s;">
+            <h3 class="text-3xl md:text-5xl font-bold mb-6 animate-fade-in-up" style="color: rgb(255, 249, 171); animation-delay: 0.4s;">
                 Open House Unit 2025
             </h3>
             <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.6s;">
@@ -272,7 +273,7 @@
     <section id="program" class="py-20 bg-black/20 animated-section">
         <div class="container mx-auto px-6">
             <h3 class="text-3xl font-bold text-center mb-2 text-white">Program Unggulan Kami</h3>
-            <p class="text-center text-gray-400 mb-12">Membentuk talenta wirausaha masa depan melalui pengalaman nyata.</p>
+            <p class="text-center text-gray-400 mb-12">Beberapa program yang membentuk talenta wirausaha masa depan dengan pengalaman nyata.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="glass-card rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
                     <div class="text-5xl mb-4">💡</div>
@@ -302,15 +303,15 @@
         <div class="container mx-auto px-6">
             <div class="text-center">
                 <h3 class="text-4xl font-bold text-white mb-4">TECFEST: Panggung Inovasi Global</h3>
-                <p class="text-gray-400 mb-12 max-w-3xl mx-auto">Acara tahunan unggulan kami yang menjadi platform kewirausahaan berskala nasional dan internasional.</p>
+                <p class="text-gray-400 mb-12 max-w-3xl mx-auto">TEC Festival adalah sebuah acara besar tahunan TEC ITB yang berisikan rangkaian perlombaan Business Case dan Business Plan Competition yang dilengkapi dengan acara puncak berupa sesi Talkshow dan Final dari perlombaan yang diadakan.</p>
             </div>
             <div class="flex flex-col md:flex-row items-center justify-center gap-8">
                 <div class="glass-card rounded-xl p-8 w-full md:w-1/2">
-                    <h4 class="text-2xl font-bold text-purple-300 mb-3">Global Business Plan Competition (GBPC)</h4>
+                    <h4 class="text-2xl font-bold mb-3" style="background: linear-gradient(90deg, orange, rgb(255, 249, 171), rgb(255, 249, 171)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">Business Plan Competition (BPC)</h4>
                     <p class="text-gray-300">Kompetisi rencana bisnis internasional dengan fitur unik 'SharkTEC', di mana finalis melakukan pitching langsung di hadapan investor untuk peluang pendanaan nyata. 💰</p>
                 </div>
                 <div class="glass-card rounded-xl p-8 w-full md:w-1/2">
-                    <h4 class="text-2xl font-bold text-pink-300 mb-3">Global Business Case Competition (GBCC)</h4>
+                    <h4 class="text-2xl font-bold mb-3" style="background: linear-gradient(90deg, orange, rgb(255, 249, 171), rgb(255, 249, 171)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">Business Case Competition (BCC)</h4>
                     <p class="text-gray-300">Kompetisi studi kasus internasional di mana peserta ditantang memecahkan masalah bisnis nyata dari perusahaan mitra ternama. 🧠</p>
                 </div>
             </div>
@@ -398,7 +399,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm1.5 0a.5.5 0 00-.5.5v6a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V5.5a.5.5 0 00-.5-.5h-11z"/><path d="M3 3.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5z"/></svg>
     </button>
     <div id="chatbot-container" class="glass-card">
-        <div id="chatbot-header" class="p-4 bg-gray-900/50 flex justify-between items-center"><h3 class="font-bold text-white">TEC AI Assistant</h3><button id="close-chatbot" class="text-white text-2xl leading-none">&times;</button></div>
+        <div id="chatbot-header" class="p-4 bg-gray-900/50 flex justify-between items-center"><h3 class="font-bold text-white">TEChat Assistant</h3><button id="close-chatbot" class="text-white text-2xl leading-none">&times;</button></div>
         <div id="chat-messages" class="flex-1 p-4 overflow-y-auto flex flex-col"></div>
         <div id="quick-replies"></div>
         <div class="p-4 bg-gray-900/50 flex items-center">
@@ -431,7 +432,11 @@
         }
 
         function createNebula() {
-            const colors = [['rgba(139, 92, 246, 0.2)', 'rgba(216, 180, 254, 0.1)'], ['rgba(99, 102, 241, 0.2)', 'rgba(165, 180, 252, 0.1)'], ['rgba(236, 72, 153, 0.2)', 'rgba(251, 146, 60, 0.1)']];
+            const colors = [
+                ['rgba(194, 24, 7, 0.25)', 'rgba(255, 87, 34, 0.12)'], 
+                ['rgba(255, 140, 0, 0.18)', 'rgba(255, 215, 0, 0.09)'], 
+                ['rgba(255, 87, 34, 0.22)', 'rgba(255, 215, 0, 0.11)']  
+            ];
             const colorPair = colors[Math.floor(Math.random() * colors.length)];
             return {
                 x: Math.random() * canvas.width, y: Math.random() * canvas.height,
@@ -742,22 +747,26 @@
         const closeBubbleBtn = document.getElementById('close-bubble-btn');
 
         const knowledgeBase = {
-            'salam': { keywords: ['halo', 'hai', 'pagi', 'siang', 'sore', 'malam', 'hello', 'hi'], answer: "Halo! 👋 Selamat datang di TEC ITB. Saya asisten AI yang siap membantu. Ada yang ingin kamu ketahui?", replies: ['Apa itu TEC?', 'Apa keuntungan bergabung?', 'Bagaimana cara daftar?'] },
+            'salam': { keywords: ['halo', 'hai', 'pagi', 'siang', 'sore', 'malam', 'hello', 'hi'], answer: "Halo! 👋 Selamat datang di TEC ITB. Saya asisten TEChat yang siap membantu. Ada yang ingin kamu ketahui?", replies: ['Apa itu TEC?', 'Apa keuntungan bergabung?', 'Bagaimana cara daftar?', 'Apa saja programnya?'] },
+            'tec_internship': { keywords: ['TECInternship', 'TEC Internship', 'tecinternship', 'tec internship'], answer: "TEC Internship adalah sebuah fase pelatihan untuk menjadi anggota TEC ITB. TEC Internship merupakan proses di mana setiap individu yang mendaftar menjadi anggota TEC ITB menjalankan pendidikan awal mengenai dunia bisnis dan menerima ilmu-ilmu dari narasumber berpengalaman.", replies: ['Mau info lagi?', 'Bagaimana cara daftar?'] },
             'tentang_tec': { keywords: ['apa itu tec', 'tentang tec', 'tec itu apa', 'jelaskan tec'], answer: "TEC (Techno Entrepreneur Club) ITB adalah unit kegiatan mahasiswa yang menjadi wadah bagi para inovator dan calon wirausahawan di ITB untuk belajar, berjejaring, dan merealisasikan ide bisnis berbasis teknologi. 🚀", replies: ['Ceritakan sejarahnya', 'Apa keuntungan bergabung?', 'Apa saja divisinya?'] },
-            'sejarah': { keywords: ['sejarah', 'didirikan', 'kapan tec', 'history', 'founded', 'e-club'], answer: "TEC ITB didirikan pada 19 Desember 2007 dengan nama 'Entrepreneur Club (E-Club)'. Pada tahun 2009, kami resmi menjadi 'Techno Entrepreneur Club (TEC ITB)' untuk fokus pada kewirausahaan berbasis teknologi.", replies: ['Siapa pendirinya?', 'Apa visi TEC?', 'Lanjut ke program'] },
+            'sejarah': { keywords: ['sejarah', 'didirikan', 'kapan tec', 'history', 'founded', 'e-club'], answer: "TEC ITB didirikan pada tahun 2008 oleh 6 orang pemrakarsanya. Dalam perkembangannya, TEC ITB telah menghasilkan individu-individu yang sukses dan berprestasi, baik dalam perlombaan, maupun bisnis. Beberapa di antaranya adalah Ahmad Dzaki (Founder of Bukalapak & Founder of TEC ITB) dan Hafizh Ihsanudin (Founder of Crisbar). Selain itu, terdapat anggota TEC ITB yang saat ini sedang mengembangkan bisnisnya di berbagai bidang, seperti Jessica Stevanie (Founder of Jepit Kue), Ariel Attalla (Founder of Kyubii), Pieter Jose (Founder of Saejiva), dan Muhammad Zidni Alkindi (Founder of Teman Belajar).", replies: ['Siapa pendirinya?', 'Apa visi TEC?', 'Lanjut ke program'] },
             'pendiri': { keywords: ['pendiri', 'founder', 'achmad zaky', 'bukalapak'], answer: "Salah satu inisiator awal TEC adalah Achmad Zaky, yang kemudian mendirikan Bukalapak. Keterlibatan beliau menjadi fondasi kuat bagi perkembangan kami. Keren kan? ✨", replies: ['Hebat! Apa filosofi TEC?', 'Ceritakan tentang alumni lain'] },
             'keuntungan': { keywords: ['keuntungan', 'benefit', 'kenapa harus join', 'manfaat', 'mengapa gabung'], answer: "Bergabung dengan TEC memberikan banyak keuntungan! 🎉 Kamu akan mendapatkan:\n• **Jaringan Luas:** Terhubung dengan mahasiswa, alumni, mentor, dan investor.\n• **Pengembangan Skill:** Belajar bisnis dari nol lewat program dan workshop.\n• **Portofolio Nyata:** Kesempatan membangun startup sendiri lewat IncubaTEC.", replies: ['Bagaimana cara daftar?', 'Jelaskan tentang Tech Companion', 'Bagaimana jaringan alumninya?'] },
             'pendaftaran': { keywords: ['daftar', 'join', 'rekrutmen', 'syarat', 'gabung', 'masuk'], answer: "Tentu! Langkah pertama untuk bergabung adalah dengan mendaftar di Open House Unit (OHU) ini. 📝 Syarat utamanya adalah kamu mahasiswa aktif ITB. Setelah OHU, akan ada proses rekrutmen selanjutnya. Jangan sampai ketinggalan ya!", replies: ['Kapan pendaftaran ditutup?', 'Apa saja divisinya?', 'Saya mau daftar sekarang!'] },
             'divisi': { keywords: ['divisi', 'struktur', 'bidang', 'departemen'], answer: "Struktur inti kami sangat dinamis! Beberapa di antaranya adalah:\n• **Academy:** Pusat pembelajaran & pengembangan skill.\n• **TEC Corp:** Wadah untuk pengalaman bisnis praktis.\n• **TECBox:** Inkubator startup internal kami.\nSelain itu ada juga divisi pendukung seperti HR, PR, dan lainnya!", replies: ['Jelaskan tentang IncubaTEC', 'Apa budaya kerja di TEC?', 'Programnya apa saja?'] },
-            'program_umum': { keywords: ['program', 'kegiatan', 'activities'], answer: "Kami punya banyak program seru! Yang utama ada **IncubaTEC** untuk bikin startup, **Tech Companion** untuk mentorship, **Company Visit** ke perusahaan keren, dan **Training & Development** untuk asah skill. Mau tau lebih detail yang mana nih? 🤔", replies: ['Jelaskan IncubaTEC', 'Jelaskan Tech Companion', 'Info tentang TECFEST'] },
-            'incubatec': { keywords: ['incubatec', 'inkubator', 'startup'], answer: "IncubaTEC adalah program inkubator bisnis andalan kami. 💡 Di sini, ide bisnismu akan dibimbing secara intensif, dapat akses ke mentor ahli, dan jejaring untuk akselerasi bisnis. Dari ide jadi nyata!", replies: ['Ada contoh startup dari TEC?', 'Bagaimana cara ikut IncubaTEC?', 'Apa itu Tech Companion?'] },
-            'tech_companion': { keywords: ['mentorship', 'mentor', 'tech companion', 'bimbingan'], answer: "Tech Companion adalah program mentorship eksklusif kami! 🤝 Kamu akan dipasangkan dengan mentor berpengalaman (praktisi industri, founder, alumni sukses) untuk dapat bimbingan 1-on-1. Sangat berguna untuk pengembangan karir dan bisnismu!", replies: ['Siapa saja contoh mentornya?', 'Apa keuntungan bergabung?', 'Program lain?'] },
-            'tecfest': { keywords: ['tecfest', 'acara', 'event', 'kompetisi', 'lomba', 'competition'], answer: "TECFEST adalah acara tahunan termegah kami, sebuah platform kewirausahaan berskala internasional. 🏆 Di dalamnya ada dua kompetisi utama: Global Business Plan Competition (GBPC) dan Global Business Case Competition (GBCC).", replies: ['Apa itu GBPC?', 'Apa itu GBCC?'] },
-            'gbpc': { keywords: ['gbpc', 'business plan', 'sharktec'], answer: "GBPC adalah kompetisi rencana bisnis internasional. Fitur uniknya adalah tahap 'SharkTEC' 🦈, di mana finalis melakukan pitching langsung di hadapan investor untuk peluang pendanaan nyata. Siap-siap dapat funding!", replies: ['Ceritakan tentang GBCC', 'Prestasi TEC apa saja?'] },
-            'gbcc': { keywords: ['gbcc', 'case competition', 'studi kasus'], answer: "GBCC adalah kompetisi studi kasus bisnis internasional. Peserta ditantang memecahkan masalah bisnis nyata dari perusahaan mitra ternama. Asah skill problem-solving kamu di sini! 🧠", replies: ['Ceritakan tentang GBPC', 'Prestasi TEC apa saja?'] },
+            'program_umum': { keywords: ['program', 'kegiatan', 'activities'], answer: "Kami punya banyak program seru! Yang utama ada IncubaTEC untuk bikin startup, Tech Companion untuk mentorship, Company Visit ke perusahaan keren, TECFest yang berisi lomba BCC dan BPC, TEC Internship, dan Studi Banding. Mau tau lebih detail yang mana nih? 🤔", replies: ['Jelaskan IncubaTEC', 'Jelaskan Tech Companion', 'TECFEST', 'Studi Banding', 'Company Visit', 'TECInternship'] },
+            'info': { keywords: ['mau info', 'info'], answer: "Apa program yang ingin ditanyakan lagi?🤔", replies: ['IncubaTEC', 'Tech Companion', 'TECFEST', 'Studi Banding', 'Company Visit', 'TECInternship'] },
+            'incubatec': { keywords: ['incubatec', 'inkubator', 'startup'], answer: "Business Incubator merupakan program TEC yang menginkubasi ide-ide bisnis dari anggota TEC ITB. Program ini memiliki fokus untuk menjadikan para anggota TEC ITB pebisnis muda. Business Incubator memberikan pelatihan berupa mentoring dengan para pebisnis muda, presentasi ide, sampai menyediakan wadah untuk anggota TEC ITB berinteraksi langsung dengan investor. Business Incubator tahun 2024 telah berhasil berkolaborasi dengan Pertamina Foundation dan HIPMI  dalam membentuk pembisnis masa depan.", replies: ['Ada contoh startup dari TEC?', 'Bagaimana cara ikut IncubaTEC?', 'Apa itu Tech Companion?'] },
+            'tech_companion': { keywords: ['mentorship', 'mentor', 'tech companion', 'bimbingan'], answer: "Competition Mentoring merupakan program TEC yang memfasilitasi para anggotanya dalam mempersiapkan perlombaan Business Case dan Business Plan dengan para mentor berpengalaman yang telah memenangkan berbagai perlombaan terkait.", replies: ['Siapa saja contoh mentornya?', 'Apa keuntungan bergabung?', 'Program lain?'] },
+            'tecfest': { keywords: ['tecfest', 'acara', 'event', 'kompetisi', 'lomba', 'competition'], answer: "TECFEST adalah acara tahunan termegah kami, sebuah platform kewirausahaan berskala internasional. 🏆 Di dalamnya ada dua kompetisi utama: Business Plan Competition (BPC)) dan Business Case Competition (BCC).", replies: ['Apa itu BPC?', 'Apa itu BCC?'] },
+            'BPC': { keywords: ['BPC', 'business plan', 'sharktec'], answer: "BPC adalah kompetisi rencana bisnis internasional. Fitur uniknya adalah tahap 'SharkTEC' 🦈, di mana finalis melakukan pitching langsung di hadapan investor untuk peluang pendanaan nyata. Siap-siap dapat funding!", replies: ['Ceritakan tentang BCC', 'Prestasi TEC apa saja?'] },
+            'BCC': { keywords: ['BCC', 'case competition', 'studi kasus'], answer: "BCC adalah kompetisi studi kasus bisnis internasional. Peserta ditantang memecahkan masalah bisnis nyata dari perusahaan mitra ternama. Asah skill problem-solving kamu di sini! 🧠", replies: ['Ceritakan tentang BPC', 'Prestasi TEC apa saja?'] },
             'alumni': { keywords: ['alumni', 'jaringan', 'networking'], answer: "Jaringan alumni TEC sangat kuat dan tersebar luas! 🌐 Banyak dari mereka yang kini menjadi founder startup, bekerja di perusahaan teknologi ternama (unicorn & decacorn), atau menjadi venture capitalist. Koneksi tak ternilai!", replies: ['Siapa contoh alumni sukses?', 'Apa keuntungan bergabung?'] },
             'budaya': { keywords: ['budaya', 'kultur', 'suasana', 'lingkungan'], answer: "Budaya di TEC itu kolaboratif dan inovatif! Kami percaya pada 'work hard, play hard'. Suasananya sangat mendukung untuk berdiskusi, bertukar ide gila, dan belajar bersama. Dijamin seru dan suportif! 🤗", replies: ['Apa saja divisinya?', 'Bagaimana cara bergabung?'] },
             'terimakasih': { keywords: ['terima kasih', 'makasih', 'thank you', 'thanks', 'oke', 'sip'], answer: "Sama-sama! Senang bisa membantu. Jika ada pertanyaan lain, jangan ragu untuk bertanya lagi ya. 😊", replies: ['Apa itu TEC?', 'Program apa saja?', 'Bagaimana cara daftar?'] },
+            'studi_banding': { keywords: ['studi banding', 'studi', 'banding'], answer:"Studi Banding merupakan program yang mempertemukan TEC ITB dengan unit bisnis lain dari berbagai universitas di seluruh Indonesia. Melalui studi banding, TEC ITB berkesempatan untuk bertukar pikiran, mencari referensi untuk pengembangan, bahkan menjadi inspirasi bagi perkembangan unit-unit lain di luar sana. Selain itu, peserta studi banding dapat memperoleh relasi dengan mahasiswa di seluruh Indonesia. Sejauh ini, TEC ITB telah melakukan studi banding dengan HIPMI UNPAD, IMK “Artha” ITB dan WEBS UNAIR.", replies: ['Mau info?', 'Bagaimana cara daftar?'] },
+            'company_visit': { keywords: ['company visit', 'kunjungan perusahaan', 'kunjungan'], answer: "Company Visit merupakan program khusus bagi para anggota TEC ITB. Anggota-anggota TEC ITB memiliki kesempatan untuk melakukan company visit ke perusahaan-perusahaan ternama di Indonesia. Saat ini, TEC ITB telah berhasil menjalin kerjasama company visit dengan Evermos, Microsoft, and Blibli.", replies: ['Mau info lagi?', 'Bagaimana cara daftar?'] },
             'default': { keywords: [], answer: "Maaf, saya belum mengerti pertanyaan itu. 😕 Coba tanyakan tentang keuntungan bergabung, program kerja, atau cara mendaftar.", replies: ['Apa keuntungan bergabung?', 'Program apa saja?', 'Bagaimana cara daftar?'] }
         };
 
