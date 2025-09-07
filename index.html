@@ -430,13 +430,16 @@
           Jelajahi galaksi inovasi dan kewirausahaan. Temukan potensimu dan
           jadilah bintang selanjutnya bersama TEC ITB.
         </p>
-        <button
+        <a
           id="daftar-hero-btn"
+          href="https://forms.gle/8KcLmaUSHptvqQs56"
           class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg animate-fade-in-up"
           style="animation-delay: 0.8s"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Daftar Sekarang
-        </button>
+        </a>
       </div>
     </main>
 
@@ -781,12 +784,15 @@
           Amankan tempatmu di TEC Open House Unit 2025. Proses pendaftaran hanya
           beberapa langkah lagi.
         </p>
-        <button
+        <a
+          href="https://forms.gle/8KcLmaUSHptvqQs56"
           id="daftar-main-btn"
           class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Daftar Sekarang
-        </button>
+        </a>
       </div>
     </section>
 
@@ -798,156 +804,6 @@
         </p>
       </div>
     </footer>
-
-    <!-- Modal Pendaftaran -->
-    <div
-      id="registration-modal"
-      class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] hidden"
-    >
-      <div
-        class="glass-card w-full max-w-md rounded-2xl shadow-2xl p-8 relative m-4 max-h-[90vh] overflow-y-auto"
-      >
-        <button
-          id="close-modal-btn"
-          class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl"
-        >
-          &times;
-        </button>
-        <!-- Step 1: Data Diri -->
-        <div id="step-1">
-          <h3 class="text-2xl font-bold text-white mb-6 text-center">
-            Pendaftaran OHU TEC 2025
-          </h3>
-          <form id="form-step-1">
-            <div class="mb-4">
-              <label
-                for="nama"
-                class="block text-sm font-medium text-gray-300 mb-1"
-                >Nama Lengkap</label
-              ><input
-                type="text"
-                id="nama"
-                class="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                required
-              />
-            </div>
-            <div class="mb-4">
-              <label
-                for="email"
-                class="block text-sm font-medium text-gray-300 mb-1"
-                >Email</label
-              ><input
-                type="email"
-                id="email"
-                class="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                required
-              />
-            </div>
-            <div class="mb-6">
-              <label
-                for="fakultas"
-                class="block text-sm font-medium text-gray-300 mb-1"
-                >Fakultas/Jurusan</label
-              ><input
-                type="text"
-                id="fakultas"
-                class="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
-            >
-              Lanjut ke Foto Diri
-            </button>
-          </form>
-        </div>
-        <!-- Step 2: Ambil Foto -->
-        <div id="step-2" class="hidden text-center">
-          <h3 class="text-2xl font-bold text-white mb-4">Foto Diri</h3>
-          <div
-            id="photo-preview-container"
-            class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden mb-4 hidden"
-          >
-            <img id="photo-preview" class="w-full h-full object-cover" />
-          </div>
-          <div
-            id="camera-container"
-            class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden mb-4"
-          >
-            <video
-              id="camera-feed"
-              class="w-full h-full object-cover"
-              autoplay
-              playsinline
-            ></video>
-            <canvas
-              id="photo-canvas"
-              class="absolute top-0 left-0 w-full h-full object-cover hidden"
-            ></canvas>
-          </div>
-          <div id="photo-options" class="space-y-2">
-            <button
-              id="take-photo-btn"
-              class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
-            >
-              Ambil Foto
-            </button>
-            <button
-              id="upload-photo-btn"
-              class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full"
-            >
-              Unggah Foto
-            </button>
-            <input
-              type="file"
-              id="photo-upload"
-              class="hidden"
-              accept="image/*"
-            />
-          </div>
-          <div id="retake-options" class="hidden space-y-2">
-            <button
-              id="retake-photo-btn"
-              class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full"
-            >
-              Ulangi / Ganti Foto
-            </button>
-            <button
-              id="confirm-photo-btn"
-              class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
-            >
-              Konfirmasi Foto
-            </button>
-          </div>
-        </div>
-        <!-- Step 3: Konfirmasi & Pembayaran -->
-        <div id="step-3" class="hidden text-center">
-          <div class="text-6xl mb-4">👍</div>
-          <h3 class="text-2xl font-bold text-white mb-4">
-            Pendaftaran Awal Berhasil!
-          </h3>
-          <p class="text-gray-300 mb-6">
-            Data Anda sudah tersimpan. Silakan unduh E-Ticket Anda dan
-            selesaikan pembayaran untuk mengonfirmasi pendaftaran.
-          </p>
-          <button
-            id="final-download-btn"
-            class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full mb-3"
-          >
-            Unduh E-Ticket
-          </button>
-          <a
-            href="https://utas.me/tecitb"
-            target="_blank"
-            id="payment-link-btn"
-            class="block w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
-            >Lanjutkan Pembayaran</a
-          >
-        </div>
-      </div>
-    </div>
 
     <!-- AI Chatbot & Bubble -->
     <div id="chat-bubble">
