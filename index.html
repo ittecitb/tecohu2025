@@ -467,9 +467,9 @@
             <div class="text-5xl mb-4">🎯</div>
             <h4 class="text-xl font-semibold text-white mb-2">Visi & Misi</h4>
             <p class="text-gray-300">
-              Menjadi wadah aktualisasi diri yang
-              inklusif, kolaboratif, dan berdampak global. Misi kami berfokus
-              pada efisiensi, inovasi, dan perluasan jaringan.
+              Menjadi wadah aktualisasi diri yang inklusif, kolaboratif, dan
+              berdampak global. Misi kami berfokus pada efisiensi, inovasi, dan
+              perluasan jaringan.
             </p>
           </div>
           <div class="glass-card rounded-xl p-8 text-center">
@@ -583,6 +583,37 @@
               'SharkTEC', di mana finalis melakukan pitching langsung di hadapan
               investor untuk peluang pendanaan nyata. 💰
             </p>
+          </div>
+          <div class="glass-card rounded-xl p-8 w-full md:w-1/2" style="display:flex; flex-direction:column; justify-content:center">
+            <h4
+              class="text-2xl font-bold mb-3"
+              style="
+                background: linear-gradient(
+                  90deg,
+                  orange,
+                  rgb(255, 249, 171),
+                  rgb(255, 249, 171)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
+              "
+            >
+              THE WALKERS TALK X TEC FESTIVAL 2025
+            </h4>
+            <img src="tecfest.jpg" alt="tecfest 2025" style="margin-bottom: 10px;">
+            <p class="text-gray-300" style="margin-bottom: 10px;">
+             Sebuah acara talkshow yang memberikan wawasan, pengalaman nyata, dan inspirasi masa depan langsung dari para ahlinya🤩🚀
+            </p>
+            <button
+          id="daftar-hero-btn"
+          class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg animate-fade-in-up"
+          style="animation-delay: 0.8s"
+            >
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScyCSLoI205-scaegjgi3OakyMra9bh-tyCDKmWnBlCayO75A/viewform" target="_blank">          Daftar Sekarang
+        </a>
+      </button>
           </div>
           <div class="glass-card rounded-xl p-8 w-full md:w-1/2">
             <h4
@@ -804,6 +835,84 @@
         </p>
       </div>
     </footer>
+    <!-- Modal Pendaftaran -->
+    <div
+      id="registration-modal"
+      class="hidden"
+    >
+      <div
+        class="glass-card w-full max-w-md rounded-2xl shadow-2xl p-8 relative m-4 max-h-[90vh] overflow-y-auto"
+      >
+        <button
+          id="close-modal-btn"
+          class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl"
+        >
+          &times;
+        </button>
+        <!-- Step 1: Data Diri -->
+        <div id="step-1">
+         
+          <form id="form-step-1">
+            
+        </div>
+        <!-- Step 2: Ambil Foto -->
+        <div id="step-2" class="hidden text-center">
+          
+          
+          <div id="photo-options" class="space-y-2">
+            <button
+              id="take-photo-btn"
+              class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
+            >
+              Ambil Foto
+            </button>
+            <button
+              id="upload-photo-btn"
+              class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full"
+            >
+              Unggah Foto
+            </button>
+            <input
+              type="file"
+              id="photo-upload"
+              class="hidden"
+              accept="image/*"
+            />
+          </div>
+          <div id="retake-options" class="hidden space-y-2">
+            <button
+              id="retake-photo-btn"
+              class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full"
+            >
+              Ulangi / Ganti Foto
+            </button>
+            <button
+              id="confirm-photo-btn"
+              class="w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
+            >
+              Konfirmasi Foto
+            </button>
+          </div>
+        </div>
+        <!-- Step 3: Konfirmasi & Pembayaran -->
+        <div id="step-3" class="hidden text-center">
+         
+          <button
+            id="final-download-btn"
+            class="w-full bg-gray-600 text-white font-bold py-3 px-8 rounded-full mb-3"
+          >
+            Unduh E-Ticket
+          </button>
+          <a
+            href="https://utas.me/tecitb"
+            target="_blank"
+            id="payment-link-btn"
+            class="block w-full btn-primary text-white font-bold py-3 px-8 rounded-full"
+            >Lanjutkan Pembayaran</a
+          >
+        </div>
+      </div>
+    </div>
 
     <!-- AI Chatbot & Bubble -->
     <div id="chat-bubble">
